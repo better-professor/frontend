@@ -15,7 +15,7 @@ function App() {
       <div className="App">
         <Route path="/RegisterForm" component={RegisterForm}/>
         <Route exact path="/LoginForm" component={LoginForm} />
-        {/* <PrivateRoute exact path="/protected" component={StudentList} /> */}
+        <PrivateRoute  path="/protected" component={StudentList}/>
       </div>
     </Router>
   );

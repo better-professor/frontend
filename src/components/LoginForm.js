@@ -74,8 +74,8 @@ class LoginForm extends React.Component {
     axiosWithAuth()
       .post("https://better-professor-backend.herokuapp.com/users/login", this.state.credentials)
       .then(res => {
-        console.log(this.props.history)
-        localStorage.setItem('token', res.data.payload);
+        console.log(" token from server", res.data.token)
+        localStorage.setItem('token', res.data.token);
         this.props.history.push('/protected');
       })
       .catch(err => console.log(err.response));
