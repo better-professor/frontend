@@ -75,7 +75,7 @@ class RegisterForm extends React.Component {
     axiosWithAuth()
       .post("https://better-professor-backend.herokuapp.com/users/register", this.state.credentials)
       .then(res => {
-        console.log(this.props.history)
+        console.log("token from register", res.data)
         localStorage.setItem('token', res.data.payload);
         this.props.history.push('/protected');
       })
