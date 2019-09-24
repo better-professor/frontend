@@ -1,26 +1,56 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import RegisterForm from './components/RegisterForm';
+import LoginForm from './components/LoginForm';
+import StudentList from './components/StudentList';
+import PrivateRoute from "./components/PrivateRoute"
+import Student from './components/Student';
+import MessagingForm from './components/MessagingForm';
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+  background-color:#00abff;
+  /* #00abff; */
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
+  align-items: flex-start;
+  height: 100vh;
+  width: 100vw;
+`;
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <Router>
+      <div className="App">
+        <Route path="/RegisterForm" component={RegisterForm}/>
+        <Route exact path="/LoginForm" component={LoginForm} />
+        <StyledDiv>
+        <PrivateRoute  path="/protected" component={StudentList}/>
+        <Route path="/protected/Student/:id" component={Student}/>
+        <Route path="/protected/MessagingForm" component={MessagingForm}/>
+        </StyledDiv>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
+// Need to:
+// - install Axios
+
+// - Talk to Laura and Matt about data structure, can they join data or should we
+// have array of deadlines inside and array of students, inside users(professors)
+// - We need an add student form inside StudentList! How will this change our component?
+
+//Discuss:
+// - are Deadlines & Projects components left over from yesterday?
+// - Walk through new routes in app.js
+// initialStudents looks good. Should we just add deadline_name, deadline_date on there?
+//

@@ -20,3 +20,20 @@
 .App-link {
   color: #09d3ac;
 }
+
+.studentsNav{
+  margin: 0.5em;
+  text-decoration: none;
+  color: #00abff;
+}
+
+.send-button {
+  background-color: #00abff;
+  color: white;
+  margin: 1em;
+  padding: 1em;
+  width: 80%;
+  border: none;
+  border-radius: 1em;
+  text-decoration: none;
+}
