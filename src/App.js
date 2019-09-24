@@ -13,9 +13,9 @@ function App() {
   return (
      <Router>
       <div className="App">
-        <Route exact path="/" component={LoginForm} />
-        <PrivateRoute exact path="/protected" component={StudentList} />
         <Route path="/RegisterForm" component={RegisterForm}/>
+        {/* <Route exact path="/" component={LoginForm} /> */}
+        {/* <PrivateRoute exact path="/protected" component={StudentList} /> */}
       </div>
     </Router>
   );

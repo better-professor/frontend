@@ -9,8 +9,10 @@ const StudentList = () => {
     // shape of Professor: userName, lastName
 
     return (<>
-        <div>Hello Professor {professor.lastName} </div>
-        <ul>
+        <div>Hello Professor
+             {/* {professor.lastName}  */}
+             </div>
+        {/* <ul>
             {studentsList.map((student) => {
                 <NavLink to="/Student/:id">
                 {student.studentName}
@@ -18,7 +20,9 @@ const StudentList = () => {
             })}
         </ul>
 
-        <Student student={student} />
+        <Student 
+        student={student}
+         /> */}
    </> )
 }
 
