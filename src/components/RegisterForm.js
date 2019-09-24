@@ -89,6 +89,7 @@ class RegisterForm extends React.Component {
         [e.target.name]: e.target.value
       }
     });
+    
   };
 
   render() {
@@ -109,24 +110,24 @@ class RegisterForm extends React.Component {
           <StyledInput
             type="text"
             name="first_name"
-            value={this.state.credentials.lastname}
+            value={this.state.credentials.first_name}
             onChange={this.handleChange}
           />
            <label>Last name</label>
           <StyledInput
             type="text"
             name="last_name"
-            value={this.state.credentials.lastname}
+            value={this.state.credentials.last_name}
             onChange={this.handleChange}
           />
           <label>Password</label>
           <StyledInput
-            type="text"
+            type="password"
             name="password"
             value={this.state.credentials.password}
             onChange={this.handleChange}
           />
-          <StyledButton>Log in</StyledButton>
+          <StyledButton>Register</StyledButton>
         </StyledForm>
       </StyledDiv>
     ); 
