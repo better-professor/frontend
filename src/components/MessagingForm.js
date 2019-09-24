@@ -88,7 +88,7 @@ class MessagingForm extends React.Component {
   render() {
     return (
       <StyledDiv>
-        <StyledH1>Welcome to the Better Professor App!</StyledH1>
+        <StyledH1>Send Message to Student</StyledH1>
         
         <StyledForm onSubmit={this.login}>
           <StyledLabel>Student Name</StyledLabel>

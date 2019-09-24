@@ -32,8 +32,8 @@ function App() {
         <Route exact path="/LoginForm" component={LoginForm} />
         <StyledDiv>
         <PrivateRoute  path="/protected" component={StudentList}/>
-        <Route path="/protected/Student/:id" component={Student}/>
-        <Route path="/protected/MessagingForm" component={MessagingForm}/>
+        <Route path="/protected/Student" component={Student}/>
+        <Route path="/protected/Student/MessagingForm" component={MessagingForm}/>
         </StyledDiv>
       </div>
     </Router>
@@ -50,7 +50,5 @@ export default App;
 // - We need an add student form inside StudentList! How will this change our component?
 
 //Discuss:
-// - are Deadlines & Projects components left over from yesterday?
-// - Walk through new routes in app.js
 // initialStudents looks good. Should we just add deadline_name, deadline_date on there?
-//
+// - Tell kiran to add an HTML a tag with the link to login

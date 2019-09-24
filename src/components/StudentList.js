@@ -82,15 +82,15 @@ const StudentList = props => {
                   color: "blue",
                   margin: "1em"
                 }}
-                to={`/protected/Student/${student.user_id}`}
+                to={`/protected/Student`}
               >
                 {student.user_id}.{student.student_name}
               </NavLink>
-              {/* <Student  student={student} /> */}
+              {/* <Route path="/protected/Student" render={((props) => <Student  student={student} />)} /> */}
             </ StyledList>
           );
         })}
-        <NavLink to="/protected/MessagingForm" className="send-button">Send Message</NavLink>
+        
       </StyledStudentList>
     </StyledDiv>
   );
