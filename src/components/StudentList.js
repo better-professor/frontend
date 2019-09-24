@@ -20,6 +20,7 @@ const StyledDiv = styled.div`
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: flex-start;
+  /* width: 100%; */
   height: 100vh;
 `;
 const StyledStudentList = styled.div`
@@ -28,9 +29,14 @@ const StyledStudentList = styled.div`
   flex-direction: column;
   /* justify-content: space-between;  */
   align-items: center;
-  width: 30%;
+  width: 100%;
   height: 100vh;
 `;
+
+const StyledList = styled.div`
+    height:10%; 
+`;
+
 const StyledH2 = styled.h2`
   color: #00abff;
   font-size: 1.3em;
@@ -68,12 +74,12 @@ const StudentList = props => {
         <StyledH2>Your students</StyledH2>
         {initialStudents.map(student => {
           return (
-            <div key={student.user_id}>
+            < StyledList key={student.user_id}>
               <NavLink
-                activeClassName="studentsNav"
+                className="studentsNav"
                 activeStyle={{
                   fontWeight: "bold",
-                  color: "red",
+                  color: "blue",
                   margin: "1em"
                 }}
                 to={`/protected/Student/${student.user_id}`}
@@ -81,9 +87,10 @@ const StudentList = props => {
                 {student.user_id}.{student.student_name}
               </NavLink>
               {/* <Student  student={student} /> */}
-            </div>
+            </ StyledList>
           );
         })}
+        <NavLink to="/protected/MessagingForm" className="send-button">Send Message</NavLink>
       </StyledStudentList>
     </StyledDiv>
   );
