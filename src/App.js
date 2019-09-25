@@ -10,6 +10,7 @@ import PrivateRoute from "./components/PrivateRoute"
 import Student from './components/Student';
 import MessagingForm from './components/MessagingForm';
 import styled from "styled-components";
+import AddStudents from './components/AddStudents';
 
 const StyledDiv = styled.div`
   background-color:#00abff;
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/LoginForm" component={LoginForm} />
         <StyledDiv>
         <PrivateRoute  path="/protected" component={StudentList}/>
+        <Route path="/protected/AddStudents" component={AddStudents}/>
         <Route path="/protected/Student" component={Student}/>
         <Route path="/protected/Student/MessagingForm" component={MessagingForm}/>
         </StyledDiv>

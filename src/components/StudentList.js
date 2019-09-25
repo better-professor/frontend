@@ -40,6 +40,8 @@ const StyledList = styled.div`
 const StyledH2 = styled.h2`
   color: #00abff;
   font-size: 1.3em;
+  margin-left: 1em;
+  margin-right: 1em;
 `;
 
 const StyledH1 = styled.h1`
@@ -47,14 +49,64 @@ const StyledH1 = styled.h1`
   font-size: 1.3em;
 `;
 
+const StyledForm= styled.form`
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2em;
+  color: #00abff;
+  width: 60%;
+  border-radius: 1em;
+  -moz-box-shadow:    3px 3px 5px 6px #115E9C;
+  -webkit-box-shadow: 3px 3px 5px 6px #115E9C;
+  box-shadow:         3px 3px 5px 6px #115E9C;
+`;
+
+const StyledInput = styled.input`
+    margin: 1em;
+    padding: 1em;
+    width: 80%;
+`;
+
+const StyledButton = styled.button`
+  background-color: #00abff;
+  color: white;
+  margin: 1em;
+  padding: 1em;
+  width: 30%;
+  border: none;
+  border-radius: 1em;
+`;
+
+const StyledLabel = styled.label`
+  margin:1em;
+`;
+
 const StudentList = props => {
   const [studentsList, setStudentsList] = useState([]);
   const loginId = localStorage.getItem("id")
-  useEffect(getStudents());
   // Get request(useEffect) needs to happen here, where we recieve student info
-    const getStudents = () => {
+  
+    useEffect(() => {
+        const getStudents = () => {
+            axiosWithAuth()
+            .get(`https://better-professor-backend.herokuapp.com/users?id=1&&students`)
+            .then(res => {
+                console.log(" response from server", res.data);
+                setStudentsList(res.data);
+              })
+              .catch(error => {
+                  alert(error.message);
+              });
+          };
+          getStudents();
+    },[]);
+    // this post request needs work
+    const addStudents = () => {
       axiosWithAuth()
-        .get(`https://better-professor-backend.herokuapp.com/students/user/${loginId}`)
+        .post('https://better-professor-backend.herokuapp.com/students', setStudentsList)
         .then(res => {
           setStudentsList(res.data);
           console.log(res.data);
@@ -63,25 +115,14 @@ const StudentList = props => {
           alert(error.message);
         });
     };
-    // this post request needs work
-    // const addStudents = () => {
-    //   axiosWithAuth()
-    //     .post('https://better-professor-backend.herokuapp.com/students', setStudentsList)
-    //     .then(res => {
-    //       setStudentsList(res.data);
-    //       console.log(res.data);
-    //     })
-    //     .catch(error => {
-    //       alert(error.message);
-    //     });
-    // };
 
   return (
     //we need userid in line 85. Not sure how to get that there yet.
     <StyledDiv>
-      <StyledH1>Hello Professor John Doe - user #:</StyledH1>
       <StyledStudentList>
-        <StyledH2>Your students</StyledH2>
+      <StyledH2>Hello Professor John Doe</StyledH2>
+      <StyledH2> Your user id is:{loginId}</StyledH2>
+        <StyledH2>Your list of students</StyledH2>
         {initialStudents.map(student => {
           return (
             < StyledList key={student.user_id}>
@@ -100,32 +141,8 @@ const StudentList = props => {
             </ StyledList>
           );
         })}
+      <NavLink className="send-button" to="/protected/AddStudents">Add students</NavLink>
       </StyledStudentList>
-
-      <StyledForm onSubmit={this.addStudents}>
-          <StyledLabel>Student Name</StyledLabel>
-          <StyledInput
-            type="text"
-            name="student_name"
-            value={setStudentsList.student_name}
-            onChange={this.handleChange}
-          />
-          <label>Major</label>
-          <StyledInput
-            type="text"
-            name="major"
-            value={setStudentsList.major}
-            onChange={this.handleChange}
-          />
-           <label>Last name</label>
-          <StyledInput
-            type="text"
-            name="user_id"
-            value={setStudentsList.user_id}
-            onChange={this.handleChange}
-          />
-          <StyledButton>Add Student</StyledButton>
-        </StyledForm>
     </StyledDiv>
   );
 };
