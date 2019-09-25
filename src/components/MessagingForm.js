@@ -70,8 +70,8 @@ const StyledH1 = styled.h1`
 class MessagingForm extends React.Component {
   state = {
     message: {
-      studentName: '',
-      messageText: ''
+      student_name: '',
+      message_text: ''
     }
   };
 
@@ -87,11 +87,12 @@ class MessagingForm extends React.Component {
 
   handleChange = e => {
     this.setState({
-      credentials: {
-        ...this.state.credentials,
+      message: {
+        ...this.state.message,
         [e.target.name]: e.target.value
       }
     });
+    console.log("form values from messaging", this.state.message)
   };
 
   render() {
@@ -103,15 +104,15 @@ class MessagingForm extends React.Component {
           <StyledLabel>Student Name</StyledLabel>
           <StyledInput
             type="text"
-            name="studentname"
-            value={this.state.message.studentName}
+            name="student_name"
+            value={this.state.message.student_name}
             onChange={this.handleChange}
           />
           <label>Message</label>
           <StyledInputText
             type="text"
-            name="messagetext"
-            value={this.state.message.messageText}
+            name="message_text"
+            value={this.state.message.message_text}
             onChange={this.handleChange}
           />
           <StyledButton>Submit</StyledButton>

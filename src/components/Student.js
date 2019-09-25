@@ -89,6 +89,12 @@ class Student extends React.Component {
         >
           Send a Message
         </NavLink>
+        <NavLink
+          to="/protected/Student/AddProject"
+          className="send-msg-button"
+        >
+          Add a new Project
+        </NavLink>
       </StyledDiv>
     );
   }

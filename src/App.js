@@ -10,6 +10,7 @@ import MessagingForm from './components/MessagingForm';
 import styled from "styled-components";
 import AddStudents from './components/AddStudents';
 import Student from './components/Student';
+import AddProject from './components/AddProject';
 
 const StyledDiv = styled.div`
   background-color:#00abff;
@@ -35,6 +36,7 @@ function App() {
         <Route path="/protected/AddStudents" component={AddStudents}/>
         <Route path="/protected/Student" component={Student}/>
         <Route path="/protected/Student/MessagingForm" component={MessagingForm}/>
+        <Route path="/protected/Student/AddProject" component={AddProject}/>
         </StyledDiv>
       </div>
     </Router>
