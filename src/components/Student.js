@@ -41,6 +41,15 @@ const StyledH3 = styled.h1`
 const StyledImg = styled.img`
   width: 50%;
 `;
+const StyledGoBack = styled.div`
+  background-color: #00abff;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  /* height: 100vh; */
+  width: 33.33vw;
+`;
 
 class Student extends React.Component {
   postStudentProject = {
@@ -77,6 +86,9 @@ class Student extends React.Component {
   render() {
     return (
       <StyledDiv>
+        <StyledGoBack>
+        <NavLink className="go-back" to="/protected">{`<`}</NavLink>
+        </StyledGoBack>
         <ul>
           <StyledH2>
             You are currently viewing records

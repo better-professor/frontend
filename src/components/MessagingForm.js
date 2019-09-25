@@ -1,6 +1,7 @@
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
+import {NavLink} from "react-router-dom";
 
 const StyledDiv = styled.div`
   background-color: white;
@@ -70,7 +71,15 @@ const StyledH1 = styled.h1`
 const StyledImg = styled.img`
   width: 50%;
 `;
-
+const StyledGoBack = styled.div`
+  background-color: white;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  /* height: 100vh; */
+  width: 33.33vw;
+`;
 class MessagingForm extends React.Component {
   state = {
     message: {
@@ -102,6 +111,9 @@ class MessagingForm extends React.Component {
   render() {
     return (
       <StyledDiv>
+        <StyledGoBack>
+        <NavLink className="back-go" to="/protected/Student">{`<`}</NavLink>
+        </StyledGoBack>
         <StyledH2>Send Message to Student</StyledH2>
         <StyledImg src="https://assets.dryicons.com/uploads/icon/svg/8859/cdf7ad61-0549-4442-a349-d17717288163.svg"></StyledImg>
         

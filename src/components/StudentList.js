@@ -4,6 +4,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
 import Student from "./Student";
 import { Route } from "react-router-dom";
+import Logout from "./Logout";
 
 const initialStudents = [
   { user_id: 1, student_name: "James Jimmerson", major: "Geology" },
@@ -15,7 +16,7 @@ const initialStudents = [
 ];
 
 const StyledDiv = styled.div`
-  background-color: #00abff;
+  background-color: white;
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
@@ -128,6 +129,7 @@ const StudentList = props => {
   return (
     //we need userid in line 85. Not sure how to get that there yet.
     <StyledDiv>
+        <Route to="/protected/Logout" component={Logout}/>
       <StyledStudentList>
         <StyledH2>Hello Professor John Doe</StyledH2>
         <StyledImg src="https://icon-library.net/images/teacher-icon-png/teacher-icon-png-16.jpg"></StyledImg>

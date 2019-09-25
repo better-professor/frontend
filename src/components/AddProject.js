@@ -1,6 +1,7 @@
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
+import {NavLink} from "react-router-dom";
 
 const StyledDiv = styled.div`
   background-color:white;
@@ -62,6 +63,15 @@ const StyledH1 = styled.h1`
 const StyledImg = styled.img`
   width: 30%;
 `;
+const StyledGoBack = styled.div`
+  background-color: white;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  /* height: 100vh; */
+  width: 33vw;
+`;
 
 class AddProject extends React.Component {
     state = {
@@ -109,6 +119,9 @@ class AddProject extends React.Component {
   render() {
     return (
       <StyledDiv>
+          <StyledGoBack>
+        <NavLink className="back-go" to="/protected/Student">{`<`}</NavLink>
+        </StyledGoBack>
         <StyledH1>Add a new project</StyledH1>
         <StyledImg src="https://cdn4.iconfinder.com/data/icons/project-management-1-11/65/32-512.png"></StyledImg>
         <StyledForm onSubmit={this.addAStudent}>

@@ -11,6 +11,8 @@ import styled from "styled-components";
 import AddStudents from './components/AddStudents';
 import Student from './components/Student';
 import AddProject from './components/AddProject';
+import NavLogo from './components/NavLogo';
+
 
 const StyledDiv = styled.div`
   background-color:#00abff;
@@ -29,6 +31,7 @@ function App() {
   return (
      <Router>
       <div className="App">
+        <Route path="/" component={NavLogo}/>
         <Route path="/RegisterForm" component={RegisterForm}/>
         <Route exact path="/LoginForm" component={LoginForm} />
         <StyledDiv>

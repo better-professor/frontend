@@ -1,12 +1,24 @@
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
+import {NavLink} from "react-router-dom";
 
 const StyledDiv = styled.div`
   background-color: #00abff;
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
+  align-items: center;
+  /* height: 100vh; */
+  width: 33.33vw;
+ 
+`;
+
+const StyledGoBack = styled.div`
+  background-color: #00abff;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
   align-items: center;
   /* height: 100vh; */
   width: 33.33vw;
@@ -73,15 +85,16 @@ class AddStudents extends React.Component {
     }
   };
 
+  
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the StudentList route
-
+  
   addAStudent = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post(
-        "https://better-professor-backend.herokuapp.com/students/register",
-        this.state.credentials
+    .post(
+      "https://better-professor-backend.herokuapp.com/students/register",
+      this.state.credentials
       )
       .then(res => {
         console.log("token from register", res.data);
@@ -92,21 +105,24 @@ class AddStudents extends React.Component {
         //this.props.history.push('/protected');
       })
       .catch(err => alert(err.message));
-  };
-
-  handleChange = e => {
-    this.setState({
-      credentials: {
-        ...this.state.credentials,
-        [e.target.name]: e.target.value
-      }
-    });
-    console.log("values from form",this.state.credentials);
-  };
-
-  render() {
+    };
+    
+    handleChange = e => {
+      this.setState({
+        credentials: {
+          ...this.state.credentials,
+          [e.target.name]: e.target.value
+        }
+      });
+      console.log("values from form",this.state.credentials);
+    };
+    
+    render() {
     return (
       <StyledDiv>
+        <StyledGoBack>
+        <NavLink className="go-back" to="/protected">{`<`}</NavLink>
+        </StyledGoBack>
         <StyledH1>Add a new Student</StyledH1>
         <StyledImg src="https://png.pngtree.com/png-clipart/20190630/original/pngtree-vector-male-student-icon-png-image_4151037.jpg"></StyledImg>
         <StyledForm onSubmit={this.addAStudent}>

@@ -21,7 +21,7 @@
   color: #09d3ac;
 }
 
-.studentsNav{
+.studentsNav {
   margin: 0.5em;
   text-decoration: none;
   color: #00abff;
@@ -40,11 +40,44 @@
 
 .send-msg-button {
   background-color: white;
-  color:#00abff;
+  color: #00abff;
   margin: 1em;
   padding: 1em;
   width: 50%;
   border: none;
   border-radius: 1em;
+  text-decoration: none;
+}
+
+.log-out {
+  background-color: #00abff;
+  color: white;
+  margin: 0.7em;
+  padding: 0.7em;
+  width: 50%;
+  border: none;
+  /* border-radius: 1em; */
+  text-decoration: none;
+}
+
+.go-back {
+  background-color: white;
+  color: #00abff;
+  margin: 0.7em;
+  padding: 0.7em;
+  width: 5%;
+  border: none;
+  /* border-radius: 1em; */
+  text-decoration: none;
+}
+
+.back-go {
+  background-color: #00abff;
+  color: white;
+  margin: 0.7em;
+  padding: 0.7em;
+  width: 5%;
+  border: none;
+  /* border-radius: 1em; */
   text-decoration: none;
 }
