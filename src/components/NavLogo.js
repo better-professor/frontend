@@ -4,11 +4,11 @@ import { Route } from "react-router-dom";
 
 
 const StyledDiv = styled.div`
-  background-color: #00abff;
+  background-color: rgba(255,255,255,.5);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid grey;
+  /* border-bottom: 1px solid grey; */
 `;
 
 const StyledImg = styled.img`

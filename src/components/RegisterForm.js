@@ -3,7 +3,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
 
 const StyledDiv= styled.div`
-  background-color: #00abff;
+  background-color: white;
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
@@ -17,13 +17,13 @@ const StyledForm= styled.form`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 2em;
+  /* margin: 0.2em; */
   color: #00abff;
-  width: 60%;
-  border-radius: 1em;
-  -moz-box-shadow:    3px 3px 5px 6px #115E9C;
+  width: 100%;
+  /* border-radius: 1em; */
+  /* -moz-box-shadow:    3px 3px 5px 6px #115E9C;
   -webkit-box-shadow: 3px 3px 5px 6px #115E9C;
-  box-shadow:         3px 3px 5px 6px #115E9C;
+  box-shadow:         3px 3px 5px 6px #115E9C; */
 `;
 
 const StyledInput = styled.input`
@@ -47,15 +47,44 @@ const StyledLabel = styled.label`
 `;
 
 const StyledH2 = styled.h2`
-  color: white;
+  color: #00abff;
   font-size: 1.3em;
   margin:0;
 `;
 const StyledH1 = styled.h1`
-  color: white;
+  color: #00abff;
   font-size: 1.8em;
  
 `;
+
+const StyledImgCont = styled.div`
+width: 50vw;
+height: 100vh;
+`;
+
+const StyledImage = styled.img`
+width:100%;
+height:100vh;
+
+
+`;
+
+const StyledFormNImage = styled.div`
+  background-color: #00abff;
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  align-items:center;
+  height: 100vh;
+  width: 100vw;
+`;
+
+const StyledDivForm = styled.div`
+width:50vw;
+height:100vh;
+background-color: white;
+`;
+
 
 class RegisterForm extends React.Component {
   state = {
@@ -97,6 +126,11 @@ class RegisterForm extends React.Component {
   render() {
     return (
       <StyledDiv>
+        <StyledFormNImage>
+        <StyledImgCont>
+          <StyledImage src="https://images.pexels.com/photos/1350615/pexels-photo-1350615.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></StyledImage>
+        </StyledImgCont>
+        <StyledDivForm>
         <StyledH1>Welcome to the Better Professor App! </StyledH1>
         <StyledH2>Register your information below to start your journey</StyledH2>
         
@@ -131,6 +165,10 @@ class RegisterForm extends React.Component {
           />
           <StyledButton>Register</StyledButton>
         </StyledForm>
+        </StyledDivForm>
+        </StyledFormNImage>
+        
+        
       </StyledDiv>
     ); 
   }
