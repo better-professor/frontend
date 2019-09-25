@@ -21,7 +21,7 @@ const StyledDiv = styled.div`
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: flex-start;
-   width: 33.33vw; 
+  width: 33.33vw;
   /* height: 100vh; */
   border-right: 1px solid grey;
 `;
@@ -98,10 +98,10 @@ const StudentList = props => {
     const getStudents = () => {
       axiosWithAuth()
         .get(
-          `https://better-professor-backend.herokuapp.com/users?id=1&&students`
+          `https://better-professor-backend.herokuapp.com/students/user/${loginId}`
         )
         .then(res => {
-          console.log(" response from server", res.data);
+          console.log(" response from server", res);
           setStudentsList(res.data);
         })
         .catch(error => {
@@ -129,7 +129,7 @@ const StudentList = props => {
   return (
     //we need userid in line 85. Not sure how to get that there yet.
     <StyledDiv>
-        <Route to="/protected/Logout" component={Logout}/>
+      <Route to="/protected/Logout" component={Logout} />
       <StyledStudentList>
         <StyledH2>Hello Professor John Doe</StyledH2>
         <StyledImg src="https://icon-library.net/images/teacher-icon-png/teacher-icon-png-16.jpg"></StyledImg>

@@ -63,7 +63,7 @@ class Student extends React.Component {
     e.preventDefault();
     axiosWithAuth()
       .post(
-        "https://better-professor-backend.herokuapp.com/users/students",
+        "https://better-professor-backend.herokuapp.com/users",
         this.postStudentProject
       )
       .then(res => {
@@ -224,5 +224,5 @@ export default Student;
 // // deadline: '12/12/2019',
 // // deadline_type: 'Letter of reccomendation',
 // // description: 'Futilely pursue something that will never be attainable',
-// // student_id: 1
+// // student_id: 1;
 // export default Student;

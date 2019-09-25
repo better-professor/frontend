@@ -50,13 +50,14 @@ export default App;
 
 // Need to:
 // - install Axios
-// - Need to display Prof id and student id.
-// - need a dynamic id in the POST url 
+// - display Prof id in studentlist.js and student id in student.js
+
 
 // Discuss:
-// - Login/Register POST request id set to localStorage
+// - Login/Register POST request id set to localStorage. Did I do it right?
 // - Students dont have their own IDs yet, thus we cant post projects to them!
-// - we need userid in line 85 of studentlist. Not sure how to get that there yet.
+// - we need user_id in line 85 of studentlist. Not sure how to get that there yet.
+// - do we need a dynamic id in the POST url ?
 
 // Notes:
 // for testing use -- username: prof | password: prof
