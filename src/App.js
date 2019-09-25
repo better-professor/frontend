@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axiosWithAuth from "./utils/axiosWithAuth";
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -28,6 +29,41 @@ const StyledDiv = styled.div`
 
 
 function App() {
+  const [studentsList, setStudentsList] = useState([]);
+  const loginId = localStorage.getItem("id");
+  // Get request(useEffect) needs to happen here, where we recieve student info
+
+  useEffect(() => {
+    const getStudents = () => {
+      axiosWithAuth()
+        .get(
+          `https://better-professor-backend.herokuapp.com/students/user/${loginId}`
+        )
+        .then(res => {
+          console.log(" response from server", res);
+          setStudentsList(res.data);
+        })
+        .catch(error => {
+          alert(error.message);
+        });
+    };
+    getStudents();
+  }, []);
+  // this post request needs work
+  const addStudents = () => {
+    axiosWithAuth()
+      .post(
+        "https://better-professor-backend.herokuapp.com/students",
+        setStudentsList
+      )
+      .then(res => {
+        setStudentsList(res.data);
+        console.log(res.data);
+      })
+      .catch(error => {
+        alert(error.message);
+      });
+  };
   return (
      <Router>
       <div className="App">
@@ -37,7 +73,7 @@ function App() {
         <StyledDiv>
         <PrivateRoute  path="/protected" component={StudentList}/>
         <Route path="/protected/AddStudents" component={AddStudents}/>
-        <Route path="/protected/Student" component={Student}/>
+        <Route path="/protected/Student/:id" render={(props) => <Student studentsList={studentsList} {...props}/> }/>
         <Route path="/protected/Student/MessagingForm" component={MessagingForm}/>
         <Route path="/protected/Student/AddProject" component={AddProject}/>
         </StyledDiv>
@@ -49,7 +85,6 @@ function App() {
 export default App;
 
 // Need to:
-// - install Axios
 // - display Prof id in studentlist.js and student id in student.js
 
 

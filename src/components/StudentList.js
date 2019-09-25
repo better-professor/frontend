@@ -90,6 +90,7 @@ const StyledImg = styled.img`
 `;
 
 const StudentList = props => {
+    console.log(props)
   const [studentsList, setStudentsList] = useState([]);
   const loginId = localStorage.getItem("id");
   // Get request(useEffect) needs to happen here, where we recieve student info
@@ -135,26 +136,26 @@ const StudentList = props => {
         <StyledImg src="https://icon-library.net/images/teacher-icon-png/teacher-icon-png-16.jpg"></StyledImg>
         <StyledH2> Your user id is:{loginId}</StyledH2>
         <StyledH2>Your list of students</StyledH2>
-        {initialStudents.map(student => {
+        {studentsList.map(student => {
           return (
-            <StyledList key={student.user_id}>
-              <NavLink
+            <StyledList key={student.id}>
+              <NavLink to={`/protected/Student/${student.id}`}
                 className="studentsNav"
                 activeStyle={{
                   fontWeight: "bold",
                   color: "blue",
                   margin: "1em"
                 }}
-                to={`/protected/Student`}
+               
               >
-                {student.user_id}.{student.student_name}
+                {student.id}.{student.student}
               </NavLink>
             </StyledList>
           );
         })}
-        <NavLink className="send-button" to="/protected/AddStudents">
-          Add students
-        </NavLink>
+        <NavLink className="send-button" to="/protected/AddStudent"> Add students</NavLink>
+         
+        
       </StyledStudentList>
     </StyledDiv>
   );
