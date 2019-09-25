@@ -37,3 +37,14 @@
   border-radius: 1em;
   text-decoration: none;
 }
+
+.send-msg-button {
+  background-color: white;
+  color:#00abff;
+  margin: 1em;
+  padding: 1em;
+  width: 50%;
+  border: none;
+  border-radius: 1em;
+  text-decoration: none;
+}

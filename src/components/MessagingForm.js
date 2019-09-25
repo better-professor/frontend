@@ -3,13 +3,16 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
-  background-color: #00abff;
+  background-color: white;
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
   height: 100vh;
+  width:33.33vw;
   margin: 1em;
+  margin-top:0;
+  border-left: 1px solid grey;
 `;
 
 const StyledForm= styled.form`
@@ -20,7 +23,7 @@ const StyledForm= styled.form`
   align-items: center;
   margin: 2em;
   color: #00abff;
-  width: 60%;
+  width: 30vw;
   border-radius: 1em;
   -moz-box-shadow:    3px 3px 5px 6px #115E9C;
   -webkit-box-shadow: 3px 3px 5px 6px #115E9C;
@@ -33,6 +36,13 @@ const StyledInput = styled.input`
     width: 80%;
 `;
 
+const StyledInputText = styled.input`
+    margin: 1em;
+    padding: 1em;
+    width: 80%;
+    height:20vh;
+`;
+
 const StyledButton = styled.button`
   background-color: #00abff;
   color: white;
@@ -42,15 +52,14 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 1em;
 `;
-
 const StyledLabel = styled.label`
   margin:1em;
 `;
 
 const StyledH2 = styled.h2`
-  color: white;
+  color: #00abff;
   font-size: 1.3em;
-  margin:0;
+  margin:1em;
 `;
 const StyledH1 = styled.h1`
   color: white;
@@ -88,7 +97,7 @@ class MessagingForm extends React.Component {
   render() {
     return (
       <StyledDiv>
-        <StyledH1>Send Message to Student</StyledH1>
+        <StyledH2>Send Message to Student</StyledH2>
         
         <StyledForm onSubmit={this.login}>
           <StyledLabel>Student Name</StyledLabel>
@@ -99,7 +108,7 @@ class MessagingForm extends React.Component {
             onChange={this.handleChange}
           />
           <label>Message</label>
-          <StyledInput
+          <StyledInputText
             type="text"
             name="messagetext"
             value={this.state.message.messageText}

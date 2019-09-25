@@ -2,15 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import StudentList from './components/StudentList';
-import PrivateRoute from "./components/PrivateRoute"
-import Student from './components/Student';
+import PrivateRoute from "./components/PrivateRoute";
 import MessagingForm from './components/MessagingForm';
 import styled from "styled-components";
 import AddStudents from './components/AddStudents';
+import Student from './components/Student';
 
 const StyledDiv = styled.div`
   background-color:#00abff;

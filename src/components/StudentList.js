@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
 import Student from "./Student";
-import {Route} from "react-router-dom";
+import { Route } from "react-router-dom";
 
 const initialStudents = [
   { user_id: 1, student_name: "James Jimmerson", major: "Geology" },
@@ -20,8 +20,9 @@ const StyledDiv = styled.div`
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: flex-start;
-  /* width: 100%; */
+   width: 33.33vw; 
   height: 100vh;
+  border-right: 1px solid grey;
 `;
 const StyledStudentList = styled.div`
   background-color: white;
@@ -34,7 +35,7 @@ const StyledStudentList = styled.div`
 `;
 
 const StyledList = styled.div`
-    height:10%; 
+  height: 10%;
 `;
 
 const StyledH2 = styled.h2`
@@ -49,7 +50,7 @@ const StyledH1 = styled.h1`
   font-size: 1.3em;
 `;
 
-const StyledForm= styled.form`
+const StyledForm = styled.form`
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -59,15 +60,15 @@ const StyledForm= styled.form`
   color: #00abff;
   width: 60%;
   border-radius: 1em;
-  -moz-box-shadow:    3px 3px 5px 6px #115E9C;
-  -webkit-box-shadow: 3px 3px 5px 6px #115E9C;
-  box-shadow:         3px 3px 5px 6px #115E9C;
+  -moz-box-shadow: 3px 3px 5px 6px #115e9c;
+  -webkit-box-shadow: 3px 3px 5px 6px #115e9c;
+  box-shadow: 3px 3px 5px 6px #115e9c;
 `;
 
 const StyledInput = styled.input`
-    margin: 1em;
-    padding: 1em;
-    width: 80%;
+  margin: 1em;
+  padding: 1em;
+  width: 80%;
 `;
 
 const StyledButton = styled.button`
@@ -81,51 +82,56 @@ const StyledButton = styled.button`
 `;
 
 const StyledLabel = styled.label`
-  margin:1em;
+  margin: 1em;
 `;
 
 const StudentList = props => {
   const [studentsList, setStudentsList] = useState([]);
-  const loginId = localStorage.getItem("id")
+  const loginId = localStorage.getItem("id");
   // Get request(useEffect) needs to happen here, where we recieve student info
-  
-    useEffect(() => {
-        const getStudents = () => {
-            axiosWithAuth()
-            .get(`https://better-professor-backend.herokuapp.com/users?id=1&&students`)
-            .then(res => {
-                console.log(" response from server", res.data);
-                setStudentsList(res.data);
-              })
-              .catch(error => {
-                  alert(error.message);
-              });
-          };
-          getStudents();
-    },[]);
-    // this post request needs work
-    const addStudents = () => {
+
+  useEffect(() => {
+    const getStudents = () => {
       axiosWithAuth()
-        .post('https://better-professor-backend.herokuapp.com/students', setStudentsList)
+        .get(
+          `https://better-professor-backend.herokuapp.com/users?id=1&&students`
+        )
         .then(res => {
+          console.log(" response from server", res.data);
           setStudentsList(res.data);
-          console.log(res.data);
         })
         .catch(error => {
           alert(error.message);
         });
     };
+    getStudents();
+  }, []);
+  // this post request needs work
+  const addStudents = () => {
+    axiosWithAuth()
+      .post(
+        "https://better-professor-backend.herokuapp.com/students",
+        setStudentsList
+      )
+      .then(res => {
+        setStudentsList(res.data);
+        console.log(res.data);
+      })
+      .catch(error => {
+        alert(error.message);
+      });
+  };
 
   return (
     //we need userid in line 85. Not sure how to get that there yet.
     <StyledDiv>
       <StyledStudentList>
-      <StyledH2>Hello Professor John Doe</StyledH2>
-      <StyledH2> Your user id is:{loginId}</StyledH2>
+        <StyledH2>Hello Professor John Doe</StyledH2>
+        <StyledH2> Your user id is:{loginId}</StyledH2>
         <StyledH2>Your list of students</StyledH2>
         {initialStudents.map(student => {
           return (
-            < StyledList key={student.user_id}>
+            <StyledList key={student.user_id}>
               <NavLink
                 className="studentsNav"
                 activeStyle={{
@@ -137,11 +143,12 @@ const StudentList = props => {
               >
                 {student.user_id}.{student.student_name}
               </NavLink>
-              {/* <Route path="/protected/Student" render={((props) => <Student  student={student} />)} /> */}
-            </ StyledList>
+            </StyledList>
           );
         })}
-      <NavLink className="send-button" to="/protected/AddStudents">Add students</NavLink>
+        <NavLink className="send-button" to="/protected/AddStudents">
+          Add students
+        </NavLink>
       </StyledStudentList>
     </StyledDiv>
   );

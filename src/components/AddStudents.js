@@ -71,7 +71,7 @@ class AddStudents extends React.Component {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the StudentList route
 
-  login = e => {
+  addAStudent = e => {
     e.preventDefault();
     axiosWithAuth()
       .post(
@@ -102,7 +102,7 @@ class AddStudents extends React.Component {
     return (
       <StyledDiv>
         <StyledH1>Add a new Student</StyledH1>
-        <StyledForm onSubmit={this.login}>
+        <StyledForm onSubmit={this.addAStudent}>
           <StyledLabel>Student ID</StyledLabel>
           <StyledInput
             type="text"
