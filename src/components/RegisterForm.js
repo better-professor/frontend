@@ -76,7 +76,9 @@ class RegisterForm extends React.Component {
       .post("https://better-professor-backend.herokuapp.com/users/register", this.state.credentials)
       .then(res => {
         console.log("token from register", res.data)
+        // is payload correct? or should it be token? -- is user.id correct? ot should it be id?
         localStorage.setItem('token', res.data.payload);
+        localStorage.setItem('id', res.data.user.id);
         this.props.history.push('/protected');
       })
       .catch(err => console.log(err.response));

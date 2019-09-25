@@ -49,27 +49,37 @@ const StyledH1 = styled.h1`
 
 const StudentList = props => {
   const [studentsList, setStudentsList] = useState([]);
-
-  //useEffect(getStudents());
+  const loginId = localStorage.getItem("id")
+  useEffect(getStudents());
   // Get request(useEffect) needs to happen here, where we recieve student info
-  // shape of Student: id, studentName, studentMajor, studentDeadlines
-  // shape of Professor: userName, lastName;
-  //use token?
-  //   const getStudents = () => {
-  //     axiosWithAuth()
-  //       .get("https://better-professor-backend.herokuapp.com/user1/students")
-  //       .then(res => {
-  //         setStudentsList(res.data);
-  //         console.log(res.data);
-  //       })
-  //       .catch(error => {
-  //         alert(error.message);
-  //       });
-  //   };
+    const getStudents = () => {
+      axiosWithAuth()
+        .get(`https://better-professor-backend.herokuapp.com/students/user/${loginId}`)
+        .then(res => {
+          setStudentsList(res.data);
+          console.log(res.data);
+        })
+        .catch(error => {
+          alert(error.message);
+        });
+    };
+    // this post request needs work
+    // const addStudents = () => {
+    //   axiosWithAuth()
+    //     .post('https://better-professor-backend.herokuapp.com/students', setStudentsList)
+    //     .then(res => {
+    //       setStudentsList(res.data);
+    //       console.log(res.data);
+    //     })
+    //     .catch(error => {
+    //       alert(error.message);
+    //     });
+    // };
 
   return (
+    //we need userid in line 85. Not sure how to get that there yet.
     <StyledDiv>
-      <StyledH1>Hello Professor John Doe</StyledH1>
+      <StyledH1>Hello Professor John Doe - user #:</StyledH1>
       <StyledStudentList>
         <StyledH2>Your students</StyledH2>
         {initialStudents.map(student => {
@@ -90,8 +100,32 @@ const StudentList = props => {
             </ StyledList>
           );
         })}
-        
       </StyledStudentList>
+
+      <StyledForm onSubmit={this.addStudents}>
+          <StyledLabel>Student Name</StyledLabel>
+          <StyledInput
+            type="text"
+            name="student_name"
+            value={setStudentsList.student_name}
+            onChange={this.handleChange}
+          />
+          <label>Major</label>
+          <StyledInput
+            type="text"
+            name="major"
+            value={setStudentsList.major}
+            onChange={this.handleChange}
+          />
+           <label>Last name</label>
+          <StyledInput
+            type="text"
+            name="user_id"
+            value={setStudentsList.user_id}
+            onChange={this.handleChange}
+          />
+          <StyledButton>Add Student</StyledButton>
+        </StyledForm>
     </StyledDiv>
   );
 };
