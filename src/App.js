@@ -2,15 +2,17 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import StudentList from './components/StudentList';
-import PrivateRoute from "./components/PrivateRoute"
-import Student from './components/Student';
+import PrivateRoute from "./components/PrivateRoute";
 import MessagingForm from './components/MessagingForm';
 import styled from "styled-components";
 import AddStudents from './components/AddStudents';
+import Student from './components/Student';
+import AddProject from './components/AddProject';
+import NavLogo from './components/NavLogo';
+
 
 const StyledDiv = styled.div`
   background-color:#00abff;
@@ -19,7 +21,7 @@ const StyledDiv = styled.div`
   /* flex-direction: column; */
   /* justify-content: space-between; */
   align-items: flex-start;
-  height: 100vh;
+  /* height: 100vh; */
   width: 100vw;
 `;
 
@@ -29,6 +31,7 @@ function App() {
   return (
      <Router>
       <div className="App">
+        <Route path="/" component={NavLogo}/>
         <Route path="/RegisterForm" component={RegisterForm}/>
         <Route exact path="/LoginForm" component={LoginForm} />
         <StyledDiv>
@@ -36,6 +39,7 @@ function App() {
         <Route path="/protected/AddStudents" component={AddStudents}/>
         <Route path="/protected/Student" component={Student}/>
         <Route path="/protected/Student/MessagingForm" component={MessagingForm}/>
+        <Route path="/protected/Student/AddProject" component={AddProject}/>
         </StyledDiv>
       </div>
     </Router>

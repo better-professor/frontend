@@ -4,24 +4,14 @@ import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 
 const StyledDiv = styled.div`
-  background-color: #00abff;
+  background-color:white;
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
   /* height: 100vh; */
-  width: 33.33vw;
- 
-`;
-
-const StyledGoBack = styled.div`
-  background-color: #00abff;
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: space-between;
-  align-items: center;
-  /* height: 100vh; */
-  width: 33.33vw;
+  width: 33vw;
+  border-left:1px solid grey;
 `;
 
 const StyledForm = styled.form`
@@ -30,9 +20,10 @@ const StyledForm = styled.form`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 2em;
+  margin: 1em;
   color: #00abff;
   width: 60%;
+  height: 80vh;
   border-radius: 1em;
   -moz-box-shadow: 3px 3px 5px 6px #115e9c;
   -webkit-box-shadow: 3px 3px 5px 6px #115e9c;
@@ -65,36 +56,44 @@ const StyledH2 = styled.h2`
   margin: 0;
 `;
 const StyledH1 = styled.h1`
-  color: white;
+  color:#00abff;
   font-size: 1.8em;
 `;
 
 const StyledImg = styled.img`
   width: 30%;
 `;
+const StyledGoBack = styled.div`
+  background-color: white;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  /* height: 100vh; */
+  width: 33vw;
+`;
 
-class AddStudents extends React.Component {
-  state = {
-    credentials: {
-      student_id: "",
-      first_name: "",
-      last_name: "",
-      major: "",
-      projects_type: "",
-      projects_date: "",
-    }
-  };
-
-  
+class AddProject extends React.Component {
+    state = {
+        credentials: {
+          student_id: "",
+          first_name: "",
+          last_name: "",
+          major: "",
+          projects_type: "",
+          projects_date: "",
+        }
+      };
+    
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the StudentList route
-  
+
   addAStudent = e => {
     e.preventDefault();
     axiosWithAuth()
-    .post(
-      "https://better-professor-backend.herokuapp.com/students/register",
-      this.state.credentials
+      .post(
+        "https://better-professor-backend.herokuapp.com/students/register",
+        this.state.credentials
       )
       .then(res => {
         console.log("token from register", res.data);
@@ -105,26 +104,26 @@ class AddStudents extends React.Component {
         //this.props.history.push('/protected');
       })
       .catch(err => alert(err.message));
-    };
-    
-    handleChange = e => {
-      this.setState({
-        credentials: {
-          ...this.state.credentials,
-          [e.target.name]: e.target.value
-        }
-      });
-      console.log("values from form",this.state.credentials);
-    };
-    
-    render() {
+  };
+
+  handleChange = e => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    });
+    console.log("values from add project form",this.state.credentials)
+  };
+
+  render() {
     return (
       <StyledDiv>
-        <StyledGoBack>
-        <NavLink className="go-back" to="/protected">{`<`}</NavLink>
+          <StyledGoBack>
+        <NavLink className="back-go" to="/protected/Student">{`<`}</NavLink>
         </StyledGoBack>
-        <StyledH1>Add a new Student</StyledH1>
-        <StyledImg src="https://png.pngtree.com/png-clipart/20190630/original/pngtree-vector-male-student-icon-png-image_4151037.jpg"></StyledImg>
+        <StyledH1>Add a new project</StyledH1>
+        <StyledImg src="https://cdn4.iconfinder.com/data/icons/project-management-1-11/65/32-512.png"></StyledImg>
         <StyledForm onSubmit={this.addAStudent}>
           <StyledLabel>Student ID</StyledLabel>
           <StyledInput
@@ -154,7 +153,7 @@ class AddStudents extends React.Component {
             value={this.state.credentials.major}
             onChange={this.handleChange}
           />
-           <label>Project type</label>
+          <label>Project type</label>
           <StyledInput
             type="text"
             name="projects_type"
@@ -167,11 +166,11 @@ class AddStudents extends React.Component {
             name="projects_date"
             value={this.state.credentials.projects_date}
             onChange={this.handleChange}/>
-          <StyledButton>Add Student</StyledButton>
+          <StyledButton>Add project</StyledButton>
         </StyledForm>
       </StyledDiv>
     );
   }
 }
 
-export default AddStudents;
+export default AddProject;

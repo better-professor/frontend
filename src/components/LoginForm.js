@@ -9,6 +9,17 @@ const StyledDiv= styled.div`
   /* justify-content: space-between; */
   align-items: center;
   height: 100vh;
+  width: 100vw;
+`;
+
+const StyledFormNImage= styled.div`
+  background-color: #00abff;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items:center;
+  height: 100vh;
+  width: 100vw;
 `;
 
 const StyledForm= styled.form`
@@ -19,8 +30,8 @@ const StyledForm= styled.form`
   align-items: center;
   margin: 2em;
   color: #00abff;
-  width: 60%;
-  border-radius: 1em;
+  width: 50vw;
+  /* border-radius: 1em; */
   -moz-box-shadow:    3px 3px 5px 6px #115E9C;
   -webkit-box-shadow: 3px 3px 5px 6px #115E9C;
   box-shadow:         3px 3px 5px 6px #115E9C;
@@ -94,9 +105,9 @@ class LoginForm extends React.Component {
   render() {
     return (
       <StyledDiv>
+        <StyledFormNImage>
         <StyledH1>Welcome to the Better Professor App!</StyledH1>
         <StyledH2>Login to continue</StyledH2>
-        
         <StyledForm className="form" onSubmit={this.login}>
           <StyledLabel>User name</StyledLabel>
           <StyledInput
@@ -114,6 +125,8 @@ class LoginForm extends React.Component {
           />
           <StyledButton>Log in</StyledButton>
         </StyledForm>
+        </StyledFormNImage>
+       
       </StyledDiv>
     ); 
   }
