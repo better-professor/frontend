@@ -8,7 +8,7 @@ const StyledDiv = styled.div`
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
   width: 33.33vw;
 `;
 
@@ -55,6 +55,10 @@ const StyledH2 = styled.h2`
 const StyledH1 = styled.h1`
   color: white;
   font-size: 1.8em;
+`;
+
+const StyledImg = styled.img`
+  width: 30%;
 `;
 
 class AddStudents extends React.Component {
@@ -104,6 +108,7 @@ class AddStudents extends React.Component {
     return (
       <StyledDiv>
         <StyledH1>Add a new Student</StyledH1>
+        <StyledImg src="https://png.pngtree.com/png-clipart/20190630/original/pngtree-vector-male-student-icon-png-image_4151037.jpg"></StyledImg>
         <StyledForm onSubmit={this.addAStudent}>
           <StyledLabel>Student ID</StyledLabel>
           <StyledInput

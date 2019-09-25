@@ -8,8 +8,8 @@ const StyledDiv = styled.div`
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
-  height: 100vh;
-  width: 33.33vw;
+  /* height: 100vh; */
+  width: 33vw;
   border-left:1px solid grey;
 `;
 
@@ -59,6 +59,10 @@ const StyledH1 = styled.h1`
   font-size: 1.8em;
 `;
 
+const StyledImg = styled.img`
+  width: 30%;
+`;
+
 class AddProject extends React.Component {
     state = {
         credentials: {
@@ -106,6 +110,7 @@ class AddProject extends React.Component {
     return (
       <StyledDiv>
         <StyledH1>Add a new project</StyledH1>
+        <StyledImg src="https://cdn4.iconfinder.com/data/icons/project-management-1-11/65/32-512.png"></StyledImg>
         <StyledForm onSubmit={this.addAStudent}>
           <StyledLabel>Student ID</StyledLabel>
           <StyledInput

@@ -19,7 +19,7 @@ const StyledDiv = styled.div`
   /* flex-direction: column; */
   /* justify-content: space-between; */
   align-items: flex-start;
-  height: 100vh;
+  /* height: 100vh; */
   width: 100vw;
 `;
 
