@@ -8,7 +8,7 @@ const StyledDiv = styled.div`
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
   width:33.33vw;
   margin: 1em;
   margin-top:0;
@@ -31,8 +31,8 @@ const StyledForm= styled.form`
 `;
 
 const StyledInput = styled.input`
-    margin: 1em;
-    padding: 1em;
+    margin: 0.9em;
+    padding: 0.9em;
     width: 80%;
 `;
 
@@ -40,7 +40,7 @@ const StyledInputText = styled.input`
     margin: 1em;
     padding: 1em;
     width: 80%;
-    height:20vh;
+    height:10vh;
 `;
 
 const StyledButton = styled.button`
@@ -65,6 +65,10 @@ const StyledH1 = styled.h1`
   color: white;
   font-size: 1.8em;
  
+`;
+
+const StyledImg = styled.img`
+  width: 50%;
 `;
 
 class MessagingForm extends React.Component {
@@ -99,6 +103,7 @@ class MessagingForm extends React.Component {
     return (
       <StyledDiv>
         <StyledH2>Send Message to Student</StyledH2>
+        <StyledImg src="https://assets.dryicons.com/uploads/icon/svg/8859/cdf7ad61-0549-4442-a349-d17717288163.svg"></StyledImg>
         
         <StyledForm onSubmit={this.login}>
           <StyledLabel>Student Name</StyledLabel>

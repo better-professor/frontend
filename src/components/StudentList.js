@@ -21,7 +21,7 @@ const StyledDiv = styled.div`
   /* justify-content: space-between; */
   align-items: flex-start;
    width: 33.33vw; 
-  height: 100vh;
+  /* height: 100vh; */
   border-right: 1px solid grey;
 `;
 const StyledStudentList = styled.div`
@@ -84,6 +84,9 @@ const StyledButton = styled.button`
 const StyledLabel = styled.label`
   margin: 1em;
 `;
+const StyledImg = styled.img`
+  width: 50%;
+`;
 
 const StudentList = props => {
   const [studentsList, setStudentsList] = useState([]);
@@ -127,6 +130,7 @@ const StudentList = props => {
     <StyledDiv>
       <StyledStudentList>
         <StyledH2>Hello Professor John Doe</StyledH2>
+        <StyledImg src="https://icon-library.net/images/teacher-icon-png/teacher-icon-png-16.jpg"></StyledImg>
         <StyledH2> Your user id is:{loginId}</StyledH2>
         <StyledH2>Your list of students</StyledH2>
         {initialStudents.map(student => {

@@ -3,6 +3,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+
 const initialStudent = {
   student_id: 1,
   student_name: "James Jimmerson",
@@ -23,7 +24,7 @@ const StyledDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
   width: 33.33vw;
 `;
 
@@ -35,6 +36,10 @@ const StyledH2 = styled.h2`
 const StyledH3 = styled.h1`
   color: white;
   font-size: 1em;
+`;
+
+const StyledImg = styled.img`
+  width: 50%;
 `;
 
 class Student extends React.Component {
@@ -78,6 +83,7 @@ class Student extends React.Component {
             <br />
             for student id number:{initialStudent.student_id}
           </StyledH2>
+          <StyledImg src="https://img.pngio.com/registration-for-under-graduate-student-icon-png-free-student-icon-png-820_731.png"></StyledImg>
           <StyledH3>Student Name: {initialStudent.student_name}</StyledH3>
           <StyledH3>Student Major: {initialStudent.major}</StyledH3>
           <StyledH3> Deadline Type: {initialStudent.deadlines.type}</StyledH3>
