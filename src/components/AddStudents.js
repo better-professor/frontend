@@ -76,12 +76,9 @@ const StyledImg = styled.img`
 class AddStudents extends React.Component {
   state = {
     credentials: {
-      student_id: "",
-      first_name: "",
-      last_name: "",
+      student_name: "",
       major: "",
-      projects_type: "",
-      projects_date: "",
+      user_id:null,
     }
   };
 
@@ -93,7 +90,7 @@ class AddStudents extends React.Component {
     e.preventDefault();
     axiosWithAuth()
     .post(
-      "https://better-professor-backend.herokuapp.com/students/register",
+      "https://better-professor-backend.herokuapp.com/students",
       this.state.credentials
       )
       .then(res => {
@@ -126,27 +123,14 @@ class AddStudents extends React.Component {
         <StyledH1>Add a new Student</StyledH1>
         <StyledImg src="https://png.pngtree.com/png-clipart/20190630/original/pngtree-vector-male-student-icon-png-image_4151037.jpg"></StyledImg>
         <StyledForm onSubmit={this.addAStudent}>
-          <StyledLabel>Student ID</StyledLabel>
+          <StyledLabel>Student Name</StyledLabel>
           <StyledInput
             type="text"
-            name="student_id"
-            value={this.state.credentials.student_id}
+            name="student_name"
+            value={this.state.credentials.student_name}
             onChange={this.handleChange}
           />
-          <label>First name</label>
-          <StyledInput
-            type="text"
-            name="first_name"
-            value={this.state.credentials.first_name}
-            onChange={this.handleChange}
-          />
-          <label>Last name</label>
-          <StyledInput
-            type="text"
-            name="last_name"
-            value={this.state.credentials.last_name}
-            onChange={this.handleChange}
-          />
+          
           <label>Major</label>
           <StyledInput
             type="text"
@@ -154,19 +138,14 @@ class AddStudents extends React.Component {
             value={this.state.credentials.major}
             onChange={this.handleChange}
           />
-           <label>Project type</label>
+           <label>User ID</label>
           <StyledInput
             type="text"
-            name="projects_type"
-            value={this.state.credentials.projects_type}
+            name="user_id"
+            value={this.state.credentials.user_id}
             onChange={this.handleChange}
           />
-           <label>Project date</label>
-          <StyledInput
-            type="text"
-            name="projects_date"
-            value={this.state.credentials.projects_date}
-            onChange={this.handleChange}/>
+           
           <StyledButton>Add Student</StyledButton>
         </StyledForm>
       </StyledDiv>

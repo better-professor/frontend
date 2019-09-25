@@ -106,9 +106,9 @@ class RegisterForm extends React.Component {
       .then(res => {
         console.log("token from register", res.data.id)
         // is payload correct? or should it be token? -- is user.id correct? ot should it be id?
-        localStorage.setItem('token', res.data.payload);
+        localStorage.setItem('token', res.data.token);
         localStorage.setItem('id', res.data.id);
-        this.props.history.push('/protected');
+        this.props.history.push('/LoginForm');
       })
       .catch(err => console.log(err.response));
   };

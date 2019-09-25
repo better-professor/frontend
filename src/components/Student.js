@@ -2,7 +2,7 @@ import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
+import { parse } from "url";
 
 const initialStudent = {
   student_id: 1,
@@ -59,11 +59,33 @@ class Student extends React.Component {
     deadlines: { type: " ", date: " " }
   };
 
+  state = {
+    student: {}
+  };
+
+  componentDidMount() {
+    this.findStudent();
+  }
+  componentDidUpdate(prvProps) {
+    if (
+      prvProps.match.params.id != this.props.match.params.id ||
+      prvProps.studentsList != this.props.studentsList
+    )
+      this.findStudent();
+  }
+
+  findStudent = () => {
+    const student = this.props.studentsList.find(student => {
+      return student.id === parseInt(this.props.match.params.id);
+    });
+    this.setState({ student });
+  };
+
   addStudentProject = e => {
     e.preventDefault();
     axiosWithAuth()
       .post(
-        "https://better-professor-backend.herokuapp.com/users/students",
+        "https://better-professor-backend.herokuapp.com/users",
         this.postStudentProject
       )
       .then(res => {
@@ -84,22 +106,25 @@ class Student extends React.Component {
   };
 
   render() {
+    console.log("props from student", this.props.studentsList);
     return (
       <StyledDiv>
         <StyledGoBack>
-        <NavLink className="go-back" to="/protected">{`<`}</NavLink>
+          <NavLink className="go-back" to="/protected">{`<`}</NavLink>
         </StyledGoBack>
         <ul>
           <StyledH2>
             You are currently viewing records
             <br />
-            for student id number:{initialStudent.student_id}
+            for student id number:{this.state.student && this.state.student.id}
           </StyledH2>
           <StyledImg src="https://img.pngio.com/registration-for-under-graduate-student-icon-png-free-student-icon-png-820_731.png"></StyledImg>
-          <StyledH3>Student Name: {initialStudent.student_name}</StyledH3>
-          <StyledH3>Student Major: {initialStudent.major}</StyledH3>
-          <StyledH3> Deadline Type: {initialStudent.deadlines.type}</StyledH3>
-          <StyledH3> Student Deadline Date: {initialStudent.deadlines.date}</StyledH3>
+          <StyledH3>
+            Student Name: {this.state.student && this.state.student.student}
+          </StyledH3>
+          <StyledH3>
+            Student Major: {this.state.student && this.state.student.major}
+          </StyledH3>
         </ul>
         <NavLink
           to="/protected/Student/MessagingForm"
@@ -107,10 +132,7 @@ class Student extends React.Component {
         >
           Send a Message
         </NavLink>
-        <NavLink
-          to="/protected/Student/AddProject"
-          className="send-msg-button"
-        >
+        <NavLink to="/protected/Student/AddProject" className="send-msg-button">
           Add a new Project
         </NavLink>
       </StyledDiv>
@@ -224,5 +246,5 @@ export default Student;
 // // deadline: '12/12/2019',
 // // deadline_type: 'Letter of reccomendation',
 // // description: 'Futilely pursue something that will never be attainable',
-// // student_id: 1
+// // student_id: 1;
 // export default Student;
