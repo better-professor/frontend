@@ -48,7 +48,7 @@ const StyledGoBack = styled.div`
   justify-content: space-between;
   align-items: center;
   /* height: 100vh; */
-  width: 33.33vw;
+  width: 100%;
 `;
 
 class Student extends React.Component {

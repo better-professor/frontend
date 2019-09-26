@@ -23,7 +23,8 @@ const StyledDiv = styled.div`
   /* justify-content: space-between; */
   align-items: flex-start;
   /* height: 100vh; */
-  width: 100vw;
+  /* width: 100vw; */
+  /* height: 100vh; */
 `;
 
 
@@ -81,7 +82,7 @@ function App() {
      <Router>
       <div className="App">
         <Route path="/" component={NavLogo}/>
-        <Route path="/RegisterForm" component={RegisterForm}/>
+        <Route  path="/RegisterForm" component={RegisterForm}/>
         <Route exact path="/LoginForm" component={LoginForm} />
         <StyledDiv>
         <PrivateRoute  path="/protected" component={StudentList}/>

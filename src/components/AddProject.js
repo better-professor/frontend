@@ -1,29 +1,29 @@
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const StyledDiv = styled.div`
-  background-color:white;
+  background-color: white;
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
-  /* height: 100vh; */
+  height: 100vh;
   width: 33vw;
-  border-left:1px solid grey;
+  border-left: 1px solid grey;
 `;
 
 const StyledForm = styled.form`
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   margin: 1em;
   color: #00abff;
   width: 60%;
-  height: 80vh;
+  /* height: 80vh; */
   border-radius: 1em;
   -moz-box-shadow: 3px 3px 5px 6px #115e9c;
   -webkit-box-shadow: 3px 3px 5px 6px #115e9c;
@@ -56,8 +56,9 @@ const StyledH2 = styled.h2`
   margin: 0;
 `;
 const StyledH1 = styled.h1`
-  color:#00abff;
+  color: #00abff;
   font-size: 1.8em;
+  margin: 0;
 `;
 
 const StyledImg = styled.img`
@@ -70,19 +71,19 @@ const StyledGoBack = styled.div`
   justify-content: space-between;
   align-items: center;
   /* height: 100vh; */
-  width: 33vw;
+  width: 100%;
 `;
 
 class AddProject extends React.Component {
-    state = {
-        projects: {
-          project_id: "",
-          project_name: "",
-         deadline: "",
-         deadline_type: "",
-          description: "",
-        }
-      };
+  state = {
+    projects: {
+      project_id: "",
+      project_name: "",
+      deadline: "",
+      deadline_type: "",
+      description: ""
+    }
+  };
 
   AddAProject = e => {
     e.preventDefault();
@@ -93,25 +94,27 @@ class AddProject extends React.Component {
       )
       .then(res => {
         console.log("hello from POST project", res.data);
-        alert("Project added successfully")
+        alert("Project added successfully");
         this.handleReset();
       })
       .catch(err => {
         this.handleReset();
-        console.log(err.message)
-      } );
+        console.log(err.message);
+      });
   };
 
-  handleReset = (e) => {
-    this.setState({ projects: {
+  handleReset = e => {
+    this.setState({
+      projects: {
         project_id: "",
         project_name: "",
-       deadline: "",
-       deadline_type: "",
+        deadline: "",
+        deadline_type: "",
         description: "",
-        projects_date: "",
-      } }) 
-}
+        projects_date: ""
+      }
+    });
+  };
 
   handleChange = e => {
     this.setState({
@@ -120,14 +123,14 @@ class AddProject extends React.Component {
         [e.target.name]: e.target.value
       }
     });
-    console.log("values from add project form",this.state.projects)
+    console.log("values from add project form", this.state.projects);
   };
 
   render() {
     return (
       <StyledDiv>
-          <StyledGoBack>
-        <NavLink className="back-go" to="/protected/Student">{`<`}</NavLink>
+        <StyledGoBack>
+          <NavLink className="back-go" to="/protected/Student">{`<`}</NavLink>
         </StyledGoBack>
         <StyledH1>Add a new project</StyledH1>
         <StyledImg src="https://cdn4.iconfinder.com/data/icons/project-management-1-11/65/32-512.png"></StyledImg>
@@ -153,7 +156,7 @@ class AddProject extends React.Component {
             value={this.state.projects.description}
             onChange={this.handleChange}
           />
-           <label>Projects date</label>
+          <label>Projects date</label>
           <StyledInput
             type="text"
             name="projects_date"
