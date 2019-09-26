@@ -1,25 +1,32 @@
 import React from "react";
 import styled from "styled-components";
-import { Route } from "react-router-dom";
-
-
+import { Route, NavLink } from "react-router-dom";
+import Better_professor from "../imgs/Better_professor.png";
+ 
 const StyledDiv = styled.div`
-  background-color: rgba(255,255,255,.5);
+  background-color: #00abff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border-bottom: 1px solid grey; */
+  width:98.7vw;
+  height:10vh;
+  margin:0;
 `;
 
 const StyledImg = styled.img`
-  width: 10%;
+  width: 8%;
   height: 5em;
+  margin:5%;
 `;
 
 const NavLogo = () => {
   return (
     <StyledDiv>
-        <StyledImg src="https://p7.hiclipart.com/preview/605/287/666/square-academic-cap-graduation-ceremony-computer-icons-graduation-cap.jpg"></StyledImg>
+      <StyledImg src={Better_professor}></StyledImg>
+      <div>
+      <NavLink className="log-out" to="/LoginForm">Login</NavLink>
+      <NavLink className="log-out" to="/RegisterForm">Register</NavLink>
+      </div>
     </StyledDiv>
   );
 };

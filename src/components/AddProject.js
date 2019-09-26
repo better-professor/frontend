@@ -1,29 +1,26 @@
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const StyledDiv = styled.div`
-  background-color:white;
+  background-color: white;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
-  /* height: 100vh; */
+  height: 100vh;
   width: 33vw;
-  border-left:1px solid grey;
+  border-left: 1px solid grey;
 `;
 
 const StyledForm = styled.form`
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   margin: 1em;
   color: #00abff;
   width: 60%;
-  height: 80vh;
   border-radius: 1em;
   -moz-box-shadow: 3px 3px 5px 6px #115e9c;
   -webkit-box-shadow: 3px 3px 5px 6px #115e9c;
@@ -46,18 +43,10 @@ const StyledButton = styled.button`
   border-radius: 1em;
 `;
 
-const StyledLabel = styled.label`
-  margin: 1em;
-`;
-
-const StyledH2 = styled.h2`
-  color: white;
-  font-size: 1.3em;
-  margin: 0;
-`;
 const StyledH1 = styled.h1`
-  color:#00abff;
+  color: #00abff;
   font-size: 1.8em;
+  margin: 0;
 `;
 
 const StyledImg = styled.img`
@@ -66,98 +55,97 @@ const StyledImg = styled.img`
 const StyledGoBack = styled.div`
   background-color: white;
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
   align-items: center;
-  /* height: 100vh; */
-  width: 33vw;
+  width: 100%;
 `;
 
 class AddProject extends React.Component {
-    state = {
-        credentials: {
-          student_id: "",
-          first_name: "",
-          last_name: "",
-          major: "",
-          projects_type: "",
-          projects_date: "",
-        }
-      };
+  state = {
+    projects: {
+      project_name: "",
+      deadline: "",
+      deadline_type: "",
+      description: ""
+    }
+  };
 
   AddAProject = e => {
+    const newProject = {
+      ...this.state.projects,
+      student_id: parseInt(this.props.match.params.id)
+    };
     e.preventDefault();
     axiosWithAuth()
       .post(
         "https://better-professor-backend.herokuapp.com/projects",
-        this.state.credentials
+        newProject
       )
       .then(res => {
-        console.log("hello from POST project", res.data);
-        alert("Project added successfully")
+        this.props.setProjectsList(projects => [...projects, res.data]);
+        this.handleReset();
       })
-      .catch(err => alert(err.message));
+      .catch(err => {
+        this.handleReset();
+        console.log(err.message);
+      });
+  };
+
+  handleReset = e => {
+    this.setState({
+      projects: {
+        project_name: "",
+        deadline: "",
+        deadline_type: "",
+        description: ""
+      }
+    });
   };
 
   handleChange = e => {
     this.setState({
-      credentials: {
-        ...this.state.credentials,
+      projects: {
+        ...this.state.projects,
         [e.target.name]: e.target.value
       }
     });
-    console.log("values from add project form",this.state.credentials)
   };
 
   render() {
     return (
       <StyledDiv>
-          <StyledGoBack>
-        <NavLink className="back-go" to="/protected/Student">{`<`}</NavLink>
+        <StyledGoBack>
+          <NavLink className="back-go" to="/protected/Student">{`<`}</NavLink>
         </StyledGoBack>
         <StyledH1>Add a new project</StyledH1>
         <StyledImg src="https://cdn4.iconfinder.com/data/icons/project-management-1-11/65/32-512.png"></StyledImg>
         <StyledForm onSubmit={this.AddAProject}>
-          <StyledLabel>Student ID</StyledLabel>
+          <label>Project name</label>
           <StyledInput
             type="text"
-            name="student_id"
-            value={this.state.credentials.student_id}
+            name="project_name"
+            value={this.state.projects.project_name}
             onChange={this.handleChange}
           />
-          <label>First name</label>
+          <label>Project Description</label>
           <StyledInput
             type="text"
-            name="first_name"
-            value={this.state.credentials.first_name}
+            name="description"
+            value={this.state.projects.description}
             onChange={this.handleChange}
           />
-          <label>Last name</label>
+          <label>Project Deadline Type</label>
           <StyledInput
             type="text"
-            name="last_name"
-            value={this.state.credentials.last_name}
+            name="deadline_type"
+            value={this.state.projects.deadline_type}
             onChange={this.handleChange}
           />
-          <label>Major</label>
+          <label>Projects date</label>
           <StyledInput
             type="text"
-            name="major"
-            value={this.state.credentials.major}
-            onChange={this.handleChange}
-          />
-          <label>Project type</label>
-          <StyledInput
-            type="text"
-            name="projects_type"
-            value={this.state.credentials.projects_type}
-            onChange={this.handleChange}
-          />
-           <label>Project date</label>
-          <StyledInput
-            type="text"
-            name="projects_date"
-            value={this.state.credentials.projects_date}
+            name="deadline"
+            value={this.state.projects.deadline}
             onChange={this.handleChange}
           />
           <StyledButton>Add project</StyledButton>
@@ -166,5 +154,4 @@ class AddProject extends React.Component {
     );
   }
 }
-
 export default AddProject;
