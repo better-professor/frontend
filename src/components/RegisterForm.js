@@ -92,16 +92,12 @@ class RegisterForm extends React.Component {
     }
   };
 
-  // make a post request to retrieve a token from the api
-  // when you have handled the token, navigate to the StudentList route
-
   login = e => {
     e.preventDefault();
     axiosWithAuth()
       .post("https://better-professor-backend.herokuapp.com/users/register", this.state.credentials)
       .then(res => {
         console.log("token from register", res.data)
-        // is payload correct? or should it be token? -- is user.id correct? ot should it be id?
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('id', res.data.id);
         localStorage.setItem('first_name', res.data.first_name);
@@ -136,51 +132,47 @@ class RegisterForm extends React.Component {
 
   render() {
     return (
-      // <StyledDiv>
-        <StyledFormNImage>
+      <StyledFormNImage>
         <StyledImgCont>
           <StyledImage src="https://images.pexels.com/photos/1350615/pexels-photo-1350615.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></StyledImage>
         </StyledImgCont>
         <StyledDivForm>
-        <StyledH1>Welcome to the Better Professor App! </StyledH1>
-        <StyledH2>Register your information below to start your journey</StyledH2>
-        
-        <StyledForm onSubmit={this.login}>
-          <StyledLabel>Username</StyledLabel>
-          <StyledInput
-            type="text"
-            name="username"
-            value={this.state.credentials.username}
-            onChange={this.handleChange}
-          />
-          <label>First name</label>
-          <StyledInput
-            type="text"
-            name="first_name"
-            value={this.state.credentials.first_name}
-            onChange={this.handleChange}
-          />
-           <label>Last name</label>
-          <StyledInput
-            type="text"
-            name="last_name"
-            value={this.state.credentials.last_name}
-            onChange={this.handleChange}
-          />
-          <label>Password</label>
-          <StyledInput
-            type="password"
-            name="password"
-            value={this.state.credentials.password}
-            onChange={this.handleChange}
-          />
-          <StyledButton>Register</StyledButton>
-        </StyledForm>
+          <StyledH1>Welcome to the Better Professor App! </StyledH1>
+          <StyledH2>Register your information below to start your journey</StyledH2>
+          
+          <StyledForm onSubmit={this.login}>
+            <StyledLabel>Username</StyledLabel>
+            <StyledInput
+              type="text"
+              name="username"
+              value={this.state.credentials.username}
+              onChange={this.handleChange}
+            />
+            <label>First name</label>
+            <StyledInput
+              type="text"
+              name="first_name"
+              value={this.state.credentials.first_name}
+              onChange={this.handleChange}
+            />
+            <label>Last name</label>
+            <StyledInput
+              type="text"
+              name="last_name"
+              value={this.state.credentials.last_name}
+              onChange={this.handleChange}
+            />
+            <label>Password</label>
+            <StyledInput
+              type="password"
+              name="password"
+              value={this.state.credentials.password}
+              onChange={this.handleChange}
+            />
+            <StyledButton>Register</StyledButton>
+          </StyledForm>
         </StyledDivForm>
-        </StyledFormNImage>
-        
-        
-      // </StyledDiv>
+      </StyledFormNImage>
     ); 
   }
 };

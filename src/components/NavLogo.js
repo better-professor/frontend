@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { Route, NavLink } from "react-router-dom";
 import Better_professor from "../imgs/Better_professor.png";
  
-
-
 const StyledDiv = styled.div`
   background-color: #00abff;
  
@@ -27,11 +25,11 @@ const StyledImg = styled.img`
 const NavLogo = () => {
   return (
     <StyledDiv>
-        <StyledImg src={Better_professor}></StyledImg>
-        <div>
-        <NavLink className="log-out" to="/LoginForm">Login</NavLink>
-        <NavLink className="log-out" to="/RegisterForm">Register</NavLink>
-        </div>
+      <StyledImg src={Better_professor}></StyledImg>
+      <div>
+      <NavLink className="log-out" to="/LoginForm">Login</NavLink>
+      <NavLink className="log-out" to="/RegisterForm">Register</NavLink>
+      </div>
     </StyledDiv>
   );
 };

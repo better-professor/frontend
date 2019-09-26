@@ -149,5 +149,4 @@ class MessagingForm extends React.Component {
     ); 
   }
 };
-
 export default MessagingForm;

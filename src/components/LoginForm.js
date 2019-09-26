@@ -68,7 +68,6 @@ const StyledH1 = styled.h1`
  
 `;
 
-
 class LoginForm extends React.Component {
   state = {
     credentials: {
@@ -76,9 +75,6 @@ class LoginForm extends React.Component {
       password: ''
     }
   };
-
-  // make a post request to retrieve a token from the api
-  // when you have handled the token, navigate to the StudentList route
 
   login = e => {
     e.preventDefault();
@@ -111,37 +107,34 @@ class LoginForm extends React.Component {
         [e.target.name]: e.target.value
       }
     });
-    
   };
 
   render() {
     return (
       <StyledDiv>
         <StyledFormNImage>
-        <StyledH1>Welcome to the Better Professor App!</StyledH1>
-        <StyledH2>Login to continue</StyledH2>
-        <StyledForm className="form" onSubmit={this.login}>
-          <StyledLabel>User name</StyledLabel>
-          <StyledInput
-            type="text"
-            name="username"
-            value={this.state.credentials.username}
-            onChange={this.handleChange}
-          />
-          <label>Password</label>
-          <StyledInput
-            type="password"
-            name="password"
-            value={this.state.credentials.password}
-            onChange={this.handleChange}
-          />
-          <StyledButton>Log in</StyledButton>
-        </StyledForm>
+          <StyledH1>Welcome to the Better Professor App!</StyledH1>
+          <StyledH2>Login to continue</StyledH2>
+          <StyledForm className="form" onSubmit={this.login}>
+            <StyledLabel>User name</StyledLabel>
+            <StyledInput
+              type="text"
+              name="username"
+              value={this.state.credentials.username}
+              onChange={this.handleChange}
+            />
+            <label>Password</label>
+            <StyledInput
+              type="password"
+              name="password"
+              value={this.state.credentials.password}
+              onChange={this.handleChange}
+            />
+            <StyledButton>Log in</StyledButton>
+          </StyledForm>
         </StyledFormNImage>
-       
       </StyledDiv>
     ); 
   }
 };
-
 export default LoginForm;

@@ -38,6 +38,11 @@ const StyledH3 = styled.h1`
   font-size: 1em;
 `;
 
+const StyledH4 = styled.h4`
+  color: white;
+  font-size: 0.8em;
+`;
+
 const StyledImg = styled.img`
   width: 50%;
 `;
@@ -52,13 +57,6 @@ const StyledGoBack = styled.div`
 `;
 
 class Student extends React.Component {
-  // postStudentProject = {
-  //   student_id: "",
-  //   student_name: " ",
-  //   major: " ",
-  //   deadlines: { type: " ", date: " " }
-  // };
-
   state = {
     student: {}
   };
@@ -94,7 +92,6 @@ class Student extends React.Component {
       )
       .then(res => {
         console.log("response from GET projects in Student.js", res);
-        //there is no projectList state here. Do i create it here? or pull it from a state hook in App.js?
         this.props.setProjectsList(res.data);
       })
       .catch(error => {
@@ -110,7 +107,6 @@ class Student extends React.Component {
       )
       .then(res => {
         console.log("response from GET projects in Student.js", res);
-        //there is no projectList state here. Do i create it here? or pull it from a state hook in App.js?
         this.props.setGetMessage(res.data);
       })
       .catch(error => {
@@ -128,20 +124,9 @@ class Student extends React.Component {
       )
       .then(res => {
         console.log("response from server", res);
-        //localStorage.setItem('token', res.data.token);
-        //this.props.history.push('/protected');
       })
       .catch(err => alert(err.message));
   };
-
-  // handleChange = e => {
-  //   this.setState({
-  //     postStudentProject: {
-  //       ...this.postStudentProject,
-  //       [e.target.name]: e.target.value
-  //     }
-  //   });
-  // };
 
   render() {
     console.log("messages from student", this.props.getMessage);
@@ -164,18 +149,30 @@ class Student extends React.Component {
             Student Major: {this.state.student && this.state.student.major}
           </StyledH3>
         </ul>
-        {this.props.projectsList.map(project => {
-          return <StyledH3>{project.project_name}</StyledH3>;
-        })}
-        {this.props.getMessage.map(message => {
-          console.log("message", message.date, message.message);
-          return (
-            <div>
-              <StyledH3>Message date:{message.date}</StyledH3>
-              <StyledH3>Sent Message:{message.message}</StyledH3>
-            </div>
-          );
-        })}
+        <>
+          <StyledH3>Student Projects </StyledH3>
+          {this.props.projectsList.map(project => {
+            return (
+              <>
+                <StyledH4>Due Date: {project.deadline}</StyledH4>
+                <StyledH4>Deadline Type: {project.deadline_type}</StyledH4>
+              </>
+            );
+          })}
+        </>
+        <>
+          <StyledH3>Sent Messages </StyledH3>
+          {this.props.getMessage.map(message => {
+            console.log("message", message.date, message.message);
+            return (
+              <div>
+                <StyledH4>Message date:{message.date}</StyledH4>
+                <StyledH4>Sent Message:{message.message}</StyledH4>
+              </div>
+            );
+          })}
+        </>
+
         <NavLink
           to={`/protected/Student/${this.props.match.params.id}/MessagingForm`}
           className="send-msg-button"
@@ -192,112 +189,4 @@ class Student extends React.Component {
     );
   }
 }
-
 export default Student;
-
-// const Student = props => {
-//   const { student } = props;
-//   console.log("props from students", student);
-//   const [studentProjects, setStudentProjects] = useState([]);
-//   // fetch our deadlines data from the server when the component mounts
-//   // set that data to the deadlineList state property
-
-//   // useEffect(() => {
-//   //   getStudentProjects();
-//   // }, [])
-
-//   // const getStudentProjects = () => {
-//   //   axiosWithAuth()
-//   //     .get(`http://localhost:5000/api/colors/${student.user_id}`)
-//   //     .then(res => {
-//   //       console.log("get projects response", res);
-//   //       setStudentProjects(res.data);
-//   //     })
-//   //     .catch(err => console.log(err.res));
-//   // };
-
-//   addStudentProject = e => {
-//     e.preventDefault();
-//     axiosWithAuth()
-//       .post(
-//         "https://better-professor-backend.herokuapp.com/projects",
-//         this.postStudentProject
-//       )
-//       .then(res => {
-//         setStudentProjects(res.data);
-//         console.log(res.data);
-//       })
-//       .catch(error => {
-//         alert(error.message);
-//       });
-//   };
-
-//   handleChange = e => {
-//     this.setState({
-//       credentials: {
-//         ...this.postStudentProject,
-//         [e.target.name]: e.target.value
-//       }
-//     });
-//   };
-
-//   return (
-//     <ul>
-//       <h1>Hello from student</h1>
-//       <h2>{initialStudent.student_name}</h2>
-//       <h1>{initialStudent.major}</h1>
-//       {initialStudent.Deadlines.map((deadline, index) => {
-//         return (
-//           <>
-//             <h1>{deadline.type}</h1>
-//             <h1>{deadline.date}</h1>
-//           </>
-//         );
-//       })}
-//       <form onSubmit={this.addStudentProject}>
-//         <input
-//           type="text"
-//           name="project_name"
-//           value={setStudentProjects.project_name}
-//           onChange={this.handleChange}
-//         />
-//         <input
-//           type="text"
-//           name="deadline"
-//           value={postStudentProject.deadlines.type}
-//           onChange={this.handleChange}
-//         />
-//         <input
-//           type="text"
-//           name="deadline_type"
-//           value={postStudentProject.deadlines.date}
-//           onChange={this.handleChange}
-//         />
-//         <input
-//           type="text"
-//           name="description"
-//           value={setStudentProjects.description}
-//           onChange={this.handleChange}
-//         />
-//         <input
-//           type="text"
-//           name="student_id"
-//           value={setStudentProjects.student_id}
-//           onChange={this.handleChange}
-//         />
-//         <button>Add project</button>
-//       </form>
-//       <NavLink to="/protected/Student/MessagingForm" className="send-button">
-//         Send Message
-//       </NavLink>
-//       {/* <MessagingForm studentName={student.name} /> */}
-//     </ul>
-//   );
-// };
-// // **EXAMPLE PROJECT**
-// // project_name: 'Wild Goose Chase',
-// // deadline: '12/12/2019',
-// // deadline_type: 'Letter of reccomendation',
-// // description: 'Futilely pursue something that will never be attainable',
-// // student_id: 1;
-// export default Student;

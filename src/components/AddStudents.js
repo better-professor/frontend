@@ -81,9 +81,6 @@ class AddStudents extends React.Component {
     }
   };
 
-  // make a post request to retrieve a token from the api
-  // when you have handled the token, navigate to the StudentList route
-
   addAStudent = e => {
     e.preventDefault();
     axiosWithAuth()
@@ -103,10 +100,6 @@ class AddStudents extends React.Component {
         this.props.setStudentsList(studentsList => [...studentsList,newStudent]);
         console.log(this.props.studentsList);
         this.handleReset();
-        // is payload correct? or should it be token? -- is user.id correct? ot should it be id?
-        //localStorage.setItem('token', res.data.payload);
-        //localStorage.setItem('id', res.data.id);
-        //this.props.history.push('/protected');
       })
       .catch(err => {
         alert(err.message);
@@ -151,7 +144,6 @@ class AddStudents extends React.Component {
             value={this.state.credentials.student_name}
             onChange={this.handleChange}
           />
-
           <label>Major</label>
           <StyledInput
             type="text"
@@ -166,12 +158,10 @@ class AddStudents extends React.Component {
             value={this.state.credentials.user_id}
             onChange={this.handleChange}
           />
-
           <StyledButton>Add Student</StyledButton>
         </StyledForm>
       </StyledDiv>
     );
   }
 }
-
 export default AddStudents;

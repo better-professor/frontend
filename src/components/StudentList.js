@@ -46,9 +46,11 @@ const StyledH2 = styled.h2`
   margin-right: 1em;
 `;
 
-const StyledH1 = styled.h1`
-  color: white;
-  font-size: 1.3em;
+const StyledH3 = styled.h3`
+  color: #00abff;
+  font-size: 0.8em;
+  margin-left: 1em;
+  margin-right: 1em;
 `;
 
 const StyledForm = styled.form`
@@ -94,7 +96,6 @@ const StudentList = props => {
   const loginId = localStorage.getItem("id");
   const user_firstName = localStorage.getItem("first_name");
   const user_lastName = localStorage.getItem("last_name");
-  // Get request(useEffect) needs to happen here, where we recieve student info
 
   useEffect(() => {
     const getStudents = () => {
@@ -112,30 +113,17 @@ const StudentList = props => {
     };
     getStudents();
   }, []);
-//   // this post request needs work
-//   const addStudents = () => {
-//     axiosWithAuth()
-//       .get(
-//         "https://better-professor-backend.herokuapp.com/students",
-//         setStudentsList
-//       )
-//       .then(res => {
-//         setStudentsList(res.data);
-//         console.log(res.data);
-//       })
-//       .catch(error => {
-//         alert(error.message);
-//       });
-//   };
 
   return (
-    //we need userid in line 85. Not sure how to get that there yet.
     <StyledDiv>
       <Route to="/protected/Logout" component={Logout} />
       <StyledStudentList>
         <StyledH2>Hello, Professor {user_firstName} {user_lastName}</StyledH2>
         <StyledImg src="https://icon-library.net/images/teacher-icon-png/teacher-icon-png-16.jpg"></StyledImg>
         <StyledH2> Your user id is: {loginId}</StyledH2>
+        <StyledH3> Total number of Messages sent: {props.getMessage.length}</StyledH3>
+        <StyledH3> Total number of students: {props.studentsList.length}</StyledH3>
+        <StyledH3> Total number of projects pending review: {props.projectsList.length}</StyledH3>
         <StyledH2>Your list of students</StyledH2>
         {props.studentsList.map(student => {
           return (
@@ -155,11 +143,8 @@ const StudentList = props => {
           );
         })}
         <NavLink className="send-button" to="/protected/AddStudents"> Add students</NavLink>
-         
-        
       </StyledStudentList>
     </StyledDiv>
   );
 };
-
 export default StudentList;

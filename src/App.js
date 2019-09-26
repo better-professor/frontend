@@ -83,7 +83,14 @@ function App() {
         <Route path="/RegisterForm" component={RegisterForm} />
         <Route exact path="/LoginForm" component={LoginForm} />
         <StyledDiv>
-          <PrivateRoute path="/protected"  setStudentsList={setStudentsList} studentsList={studentsList} component={StudentList} />
+          <PrivateRoute
+            path="/protected"
+            projectsList={projectsList}
+            setStudentsList={setStudentsList}
+            getMessage={getMessage}
+            studentsList={studentsList}
+            component={StudentList}
+          />
           <Route
             path="/protected/AddStudents"
             render={props => (
@@ -96,15 +103,28 @@ function App() {
           />
           <Route
             path="/protected/Student/:id"
-            render={props => <Student setGetMessage={setGetMessage} getMessage={getMessage} setProjectsList={setProjectsList} projectsList={projectsList} studentsList={studentsList} {...props} />}
+            render={props => (
+              <Student
+                setGetMessage={setGetMessage}
+                getMessage={getMessage}
+                setProjectsList={setProjectsList}
+                projectsList={projectsList}
+                studentsList={studentsList}
+                {...props}
+              />
+            )}
           />
           <Route
             path="/protected/Student/:id/MessagingForm"
-            render={(props) => <MessagingForm setGetMessage={setGetMessage} {...props}/>}
+            render={props => (
+              <MessagingForm setGetMessage={setGetMessage} {...props} />
+            )}
           />
           <Route
             path="/protected/Student/:id/AddProject"
-            render={(props)=> <AddProject setProjectsList={setProjectsList} {...props} />}
+            render={props => (
+              <AddProject setProjectsList={setProjectsList} {...props} />
+            )}
           />
         </StyledDiv>
       </div>

@@ -17,5 +17,4 @@ const Logout = () => {
       </StyledNavBar>
   );
 };
-
 export default Logout;
