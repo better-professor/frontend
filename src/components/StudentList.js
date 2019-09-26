@@ -91,7 +91,6 @@ const StyledImg = styled.img`
 
 const StudentList = props => {
   console.log(props);
-  const [studentsList, setStudentsList] = useState([]);
   const loginId = localStorage.getItem("id");
   const user_firstName = localStorage.getItem("first_name");
   const user_lastName = localStorage.getItem("last_name");
@@ -105,7 +104,7 @@ const StudentList = props => {
         )
         .then(res => {
           console.log(" response from server", res);
-          setStudentsList(res.data);
+          props.setStudentsList(res.data);
         })
         .catch(error => {
           alert(error.message);
@@ -138,7 +137,7 @@ const StudentList = props => {
         <StyledImg src="https://icon-library.net/images/teacher-icon-png/teacher-icon-png-16.jpg"></StyledImg>
         <StyledH2> Your user id is: {loginId}</StyledH2>
         <StyledH2>Your list of students</StyledH2>
-        {studentsList.map(student => {
+        {props.studentsList.map(student => {
           return (
             <StyledList key={student.id}>
               <NavLink

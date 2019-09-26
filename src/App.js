@@ -83,7 +83,7 @@ function App() {
         <Route path="/RegisterForm" component={RegisterForm} />
         <Route exact path="/LoginForm" component={LoginForm} />
         <StyledDiv>
-          <PrivateRoute path="/protected" component={StudentList} />
+          <PrivateRoute path="/protected"  setStudentsList={setStudentsList} studentsList={studentsList} component={StudentList} />
           <Route
             path="/protected/AddStudents"
             render={props => (

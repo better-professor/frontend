@@ -1,7 +1,7 @@
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const StyledDiv = styled.div`
   background-color: #00abff;
@@ -11,7 +11,6 @@ const StyledDiv = styled.div`
   align-items: center;
   /* height: 100vh; */
   width: 33.33vw;
- 
 `;
 
 const StyledGoBack = styled.div`
@@ -21,7 +20,7 @@ const StyledGoBack = styled.div`
   justify-content: space-between;
   align-items: center;
   /* height: 100vh; */
-  width: 100%;;
+  width: 100%;
 `;
 
 const StyledForm = styled.form`
@@ -78,26 +77,31 @@ class AddStudents extends React.Component {
     credentials: {
       student_name: "",
       major: "",
-      user_id:"",
+      user_id: ""
     }
   };
 
-  
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the StudentList route
-  
+
   addAStudent = e => {
     e.preventDefault();
     axiosWithAuth()
-    .post(
-      "https://better-professor-backend.herokuapp.com/students",
-      this.state.credentials
+      .post(
+        "https://better-professor-backend.herokuapp.com/students",
+        this.state.credentials
       )
       .then(res => {
         console.log("token from register", res.data);
-         alert("Student added successfully")
-        this.props.setStudentsList(this.state.credentials);
-        console.log(this.props.studentsList)
+        alert("Student added successfully");
+        const newStudent = {
+          student: res.data.student_name,
+          major: res.data.major,
+          id: res.data.id,
+          user_id: res.data.user_id
+        };
+        this.props.setStudentsList(studentsList => [...studentsList,newStudent]);
+        console.log(this.props.studentsList);
         this.handleReset();
         // is payload correct? or should it be token? -- is user.id correct? ot should it be id?
         //localStorage.setItem('token', res.data.payload);
@@ -107,33 +111,35 @@ class AddStudents extends React.Component {
       .catch(err => {
         alert(err.message);
         this.handleReset();
-      }) 
-    };
-    
-    handleChange = e => {
-      this.setState({
-        credentials: {
-          ...this.state.credentials,
-          [e.target.name]: e.target.value
-        }
       });
-      console.log("values from form",this.state.credentials);
-      console.log("props from parent",this.props);
-    };
+  };
 
-    handleReset = (e) => {
-      this.setState({ credentials: {
+  handleChange = e => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    });
+    console.log("values from form", this.state.credentials);
+    console.log("props from parent", this.props);
+  };
+
+  handleReset = e => {
+    this.setState({
+      credentials: {
         student_name: "",
         major: "",
-        user_id:"",
-      } }) // manually reset controlled fields ("password")
-  }
-    
-    render() {
+        user_id: ""
+      }
+    }); // manually reset controlled fields ("password")
+  };
+
+  render() {
     return (
       <StyledDiv>
         <StyledGoBack>
-        <NavLink className="go-back" to="/protected">{`<`}</NavLink>
+          <NavLink className="go-back" to="/protected">{`<`}</NavLink>
         </StyledGoBack>
         <StyledH1>Add a new Student</StyledH1>
         <StyledImg src="https://png.pngtree.com/png-clipart/20190630/original/pngtree-vector-male-student-icon-png-image_4151037.jpg"></StyledImg>
@@ -145,7 +151,7 @@ class AddStudents extends React.Component {
             value={this.state.credentials.student_name}
             onChange={this.handleChange}
           />
-          
+
           <label>Major</label>
           <StyledInput
             type="text"
@@ -153,14 +159,14 @@ class AddStudents extends React.Component {
             value={this.state.credentials.major}
             onChange={this.handleChange}
           />
-           <label>User ID</label>
+          <label>User ID</label>
           <StyledInput
             type="text"
             name="user_id"
             value={this.state.credentials.user_id}
             onChange={this.handleChange}
           />
-           
+
           <StyledButton>Add Student</StyledButton>
         </StyledForm>
       </StyledDiv>
