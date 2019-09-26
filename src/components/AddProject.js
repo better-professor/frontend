@@ -75,13 +75,12 @@ const StyledGoBack = styled.div`
 
 class AddProject extends React.Component {
     state = {
-        credentials: {
-          student_id: "",
-          first_name: "",
-          last_name: "",
-          major: "",
-          projects_type: "",
-          projects_date: "",
+        projects: {
+          project_id: "",
+          project_name: "",
+         deadline: "",
+         deadline_type: "",
+          description: "",
         }
       };
 
@@ -90,23 +89,38 @@ class AddProject extends React.Component {
     axiosWithAuth()
       .post(
         "https://better-professor-backend.herokuapp.com/projects",
-        this.state.credentials
+        this.state.projects
       )
       .then(res => {
         console.log("hello from POST project", res.data);
         alert("Project added successfully")
+        this.handleReset();
       })
-      .catch(err => alert(err.message));
+      .catch(err => {
+        this.handleReset();
+        console.log(err.message)
+      } );
   };
+
+  handleReset = (e) => {
+    this.setState({ projects: {
+        project_id: "",
+        project_name: "",
+       deadline: "",
+       deadline_type: "",
+        description: "",
+        projects_date: "",
+      } }) 
+}
 
   handleChange = e => {
     this.setState({
-      credentials: {
-        ...this.state.credentials,
+      projects: {
+        ...this.state.projects,
         [e.target.name]: e.target.value
       }
     });
-    console.log("values from add project form",this.state.credentials)
+    console.log("values from add project form",this.state.projects)
   };
 
   render() {
@@ -118,46 +132,32 @@ class AddProject extends React.Component {
         <StyledH1>Add a new project</StyledH1>
         <StyledImg src="https://cdn4.iconfinder.com/data/icons/project-management-1-11/65/32-512.png"></StyledImg>
         <StyledForm onSubmit={this.AddAProject}>
-          <StyledLabel>Student ID</StyledLabel>
+          <StyledLabel>Project ID</StyledLabel>
           <StyledInput
             type="text"
-            name="student_id"
-            value={this.state.credentials.student_id}
+            name="project_id"
+            value={this.state.projects.project_id}
             onChange={this.handleChange}
           />
-          <label>First name</label>
+          <label>Project name</label>
           <StyledInput
             type="text"
-            name="first_name"
-            value={this.state.credentials.first_name}
+            name="project_name"
+            value={this.state.projects.project_name}
             onChange={this.handleChange}
           />
-          <label>Last name</label>
+          <label>Project Description</label>
           <StyledInput
             type="text"
-            name="last_name"
-            value={this.state.credentials.last_name}
+            name="description"
+            value={this.state.projects.description}
             onChange={this.handleChange}
           />
-          <label>Major</label>
-          <StyledInput
-            type="text"
-            name="major"
-            value={this.state.credentials.major}
-            onChange={this.handleChange}
-          />
-          <label>Project type</label>
-          <StyledInput
-            type="text"
-            name="projects_type"
-            value={this.state.credentials.projects_type}
-            onChange={this.handleChange}
-          />
-           <label>Project date</label>
+           <label>Projects date</label>
           <StyledInput
             type="text"
             name="projects_date"
-            value={this.state.credentials.projects_date}
+            value={this.state.projects.projects_date}
             onChange={this.handleChange}
           />
           <StyledButton>Add project</StyledButton>

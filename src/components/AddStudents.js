@@ -95,15 +95,19 @@ class AddStudents extends React.Component {
       )
       .then(res => {
         console.log("token from register", res.data);
-        alert("Student added successfully")
+         alert("Student added successfully")
         this.props.setStudentsList(this.state.credentials);
         console.log(this.props.studentsList)
+        this.handleReset();
         // is payload correct? or should it be token? -- is user.id correct? ot should it be id?
         //localStorage.setItem('token', res.data.payload);
         //localStorage.setItem('id', res.data.id);
         //this.props.history.push('/protected');
       })
-      .catch(err => alert(err.message));
+      .catch(err => {
+        alert(err.message);
+        this.handleReset();
+      }) 
     };
     
     handleChange = e => {
@@ -116,6 +120,14 @@ class AddStudents extends React.Component {
       console.log("values from form",this.state.credentials);
       console.log("props from parent",this.props);
     };
+
+    handleReset = (e) => {
+      this.setState({ credentials: {
+        student_name: "",
+        major: "",
+        user_id:"",
+      } }) // manually reset controlled fields ("password")
+  }
     
     render() {
     return (

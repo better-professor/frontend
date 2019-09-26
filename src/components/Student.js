@@ -52,12 +52,12 @@ const StyledGoBack = styled.div`
 `;
 
 class Student extends React.Component {
-  postStudentProject = {
-    student_id: "",
-    student_name: " ",
-    major: " ",
-    deadlines: { type: " ", date: " " }
-  };
+  // postStudentProject = {
+  //   student_id: "",
+  //   student_name: " ",
+  //   major: " ",
+  //   deadlines: { type: " ", date: " " }
+  // };
 
   state = {
     student: {}
@@ -93,7 +93,7 @@ class Student extends React.Component {
           this.setState(res.data)
         })
         .catch(error => {
-          alert(error.message);
+          console.log("error from Student component",error.message);
         });
   }
 
@@ -112,14 +112,14 @@ class Student extends React.Component {
       .catch(err => alert(err.message));
   };
 
-  handleChange = e => {
-    this.setState({
-      postStudentProject: {
-        ...this.postStudentProject,
-        [e.target.name]: e.target.value
-      }
-    });
-  };
+  // handleChange = e => {
+  //   this.setState({
+  //     postStudentProject: {
+  //       ...this.postStudentProject,
+  //       [e.target.name]: e.target.value
+  //     }
+  //   });
+  // };
 
   render() {
     console.log("props from student", this.props.studentsList);

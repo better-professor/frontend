@@ -94,8 +94,12 @@ class MessagingForm extends React.Component {
       .post('http://localhost:5000/api/login', this.state.message)
       .then(res => {
         console.log(this.props.history)
+        this.handleReset();
       })
-      .catch(err => console.log(err.response));
+      .catch(err => {
+        console.log(err.message);
+        this.handleReset();
+      } );
   };
 
   handleChange = e => {
@@ -107,6 +111,12 @@ class MessagingForm extends React.Component {
     });
     console.log("form values from messaging", this.state.message)
   };
+  handleReset = (e) => {
+    this.setState({  message: {
+      student_name: '',
+      message_text: ''
+    } }) 
+}
 
   render() {
     return (
@@ -116,7 +126,6 @@ class MessagingForm extends React.Component {
         </StyledGoBack>
         <StyledH2>Send Message to Student</StyledH2>
         <StyledImg src="https://assets.dryicons.com/uploads/icon/svg/8859/cdf7ad61-0549-4442-a349-d17717288163.svg"></StyledImg>
-        
         <StyledForm onSubmit={this.login}>
           <StyledLabel>Student Name</StyledLabel>
           <StyledInput

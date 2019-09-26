@@ -87,10 +87,21 @@ class LoginForm extends React.Component {
       .then(res => {
         console.log(" token from server", res.data.token)
         localStorage.setItem('token', res.data.token);
+        this.handleReset();
         this.props.history.push('/protected');
       })
-      .catch(err => console.log(err.response));
+      .catch(err =>{
+        console.log(err.message);
+        this.handleReset();
+      } );
   };
+
+  handleReset = (e) => {
+    this.setState({ credentials: {
+      username: '',
+      password: ''
+    } }) 
+}
 
   handleChange = e => {
     this.setState({
