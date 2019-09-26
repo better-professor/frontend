@@ -77,7 +77,6 @@ const StyledGoBack = styled.div`
 class AddProject extends React.Component {
   state = {
     projects: {
-      project_id: "",
       project_name: "",
       deadline: "",
       deadline_type: "",
@@ -86,14 +85,20 @@ class AddProject extends React.Component {
   };
 
   AddAProject = e => {
+    const newProject = {
+      ...this.state.projects,
+      student_id: parseInt(this.props.match.params.id)
+    };
+    console.log(newProject);
     e.preventDefault();
     axiosWithAuth()
       .post(
         "https://better-professor-backend.herokuapp.com/projects",
-        this.state.projects
+        newProject
       )
       .then(res => {
         console.log("hello from POST project", res.data);
+        this.props.setProjectsList(projects => [...projects, res.data]);
         alert("Project added successfully");
         this.handleReset();
       })
@@ -106,12 +111,10 @@ class AddProject extends React.Component {
   handleReset = e => {
     this.setState({
       projects: {
-        project_id: "",
         project_name: "",
         deadline: "",
         deadline_type: "",
         description: "",
-        projects_date: ""
       }
     });
   };
@@ -135,13 +138,6 @@ class AddProject extends React.Component {
         <StyledH1>Add a new project</StyledH1>
         <StyledImg src="https://cdn4.iconfinder.com/data/icons/project-management-1-11/65/32-512.png"></StyledImg>
         <StyledForm onSubmit={this.AddAProject}>
-          <StyledLabel>Project ID</StyledLabel>
-          <StyledInput
-            type="text"
-            name="project_id"
-            value={this.state.projects.project_id}
-            onChange={this.handleChange}
-          />
           <label>Project name</label>
           <StyledInput
             type="text"
@@ -156,11 +152,18 @@ class AddProject extends React.Component {
             value={this.state.projects.description}
             onChange={this.handleChange}
           />
+          <label>Project Deadline Type</label>
+          <StyledInput
+            type="text"
+            name="deadline_type"
+            value={this.state.projects.deadline_type}
+            onChange={this.handleChange}
+          />
           <label>Projects date</label>
           <StyledInput
             type="text"
-            name="projects_date"
-            value={this.state.projects.projects_date}
+            name="deadline"
+            value={this.state.projects.deadline}
             onChange={this.handleChange}
           />
           <StyledButton>Add project</StyledButton>

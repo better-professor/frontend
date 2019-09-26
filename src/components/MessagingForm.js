@@ -83,17 +83,19 @@ const StyledGoBack = styled.div`
 class MessagingForm extends React.Component {
   state = {
     message: {
-      student_name: '',
-      message_text: ''
+      date: '',
+      message: ''
     }
   };
 
   sendMessage = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post('http://localhost:5000/api/login', this.state.message)
+      .post("https://better-professor-backend.herokuapp.com/messages", {...this.state.message,student_id:this.props.match.params.id})
       .then(res => {
-        console.log(this.props.history)
+        alert("message sent")
+        console.log(" props from messages",res);
+        this.props.setGetMessage(message =>[...message, res.data[0]])
         this.handleReset();
       })
       .catch(err => {
@@ -113,8 +115,8 @@ class MessagingForm extends React.Component {
   };
   handleReset = (e) => {
     this.setState({  message: {
-      student_name: '',
-      message_text: ''
+      date: '',
+      message: ''
     } }) 
 }
 
@@ -126,19 +128,19 @@ class MessagingForm extends React.Component {
         </StyledGoBack>
         <StyledH2>Send Message to Student</StyledH2>
         <StyledImg src="https://assets.dryicons.com/uploads/icon/svg/8859/cdf7ad61-0549-4442-a349-d17717288163.svg"></StyledImg>
-        <StyledForm onSubmit={this.login}>
-          <StyledLabel>Student Name</StyledLabel>
+        <StyledForm onSubmit={this.sendMessage}>
+          <StyledLabel>Date</StyledLabel>
           <StyledInput
             type="text"
-            name="student_name"
-            value={this.state.message.student_name}
+            name="date"
+            value={this.state.message.date}
             onChange={this.handleChange}
           />
           <label>Message</label>
           <StyledInputText
             type="text"
-            name="message_text"
-            value={this.state.message.message_text}
+            name="message"
+            value={this.state.message.message}
             onChange={this.handleChange}
           />
           <StyledButton>Submit</StyledButton>

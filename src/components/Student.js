@@ -66,6 +66,7 @@ class Student extends React.Component {
   componentDidMount() {
     this.findStudent();
     this.getProjects();
+    this.getMessages();
   }
   componentDidUpdate(prvProps) {
     if (
@@ -73,6 +74,10 @@ class Student extends React.Component {
       prvProps.studentsList != this.props.studentsList
     )
       this.findStudent();
+    if (prvProps.match.params.id != this.props.match.params.id) {
+      this.getProjects();
+      this.getMessages();
+    }
   }
 
   findStudent = () => {
@@ -84,18 +89,35 @@ class Student extends React.Component {
 
   getProjects = () => {
     axiosWithAuth()
-        .get(
-          `https://better-professor-backend.herokuapp.com/projects/students/${this.state.student.id}`
-        )
-        .then(res => {
-          console.log("response from GET projects in Student.js", res);
-          //there is no projectList state here. Do i create it here? or pull it from a state hook in App.js?
-          this.setState(res.data)
-        })
-        .catch(error => {
-          console.log("error from Student component",error.message);
-        });
-  }
+      .get(
+        `https://better-professor-backend.herokuapp.com/projects/students/${this.props.match.params.id}`
+      )
+      .then(res => {
+        console.log("response from GET projects in Student.js", res);
+        //there is no projectList state here. Do i create it here? or pull it from a state hook in App.js?
+        this.props.setProjectsList(res.data);
+      })
+      .catch(error => {
+        console.log("error from Student component", error.message);
+        this.props.setProjectsList([]);
+      });
+  };
+
+  getMessages = () => {
+    axiosWithAuth()
+      .get(
+        `https://better-professor-backend.herokuapp.com/messages/students/${this.props.match.params.id}`
+      )
+      .then(res => {
+        console.log("response from GET projects in Student.js", res);
+        //there is no projectList state here. Do i create it here? or pull it from a state hook in App.js?
+        this.props.setGetMessage(res.data);
+      })
+      .catch(error => {
+        console.log("error from Student component", error.message);
+        this.props.setGetMessage([]);
+      });
+  };
 
   addStudentProject = e => {
     e.preventDefault();
@@ -122,7 +144,7 @@ class Student extends React.Component {
   // };
 
   render() {
-    console.log("props from student", this.props.studentsList);
+    console.log("messages from student", this.props.getMessage);
     return (
       <StyledDiv>
         <StyledGoBack>
@@ -142,13 +164,28 @@ class Student extends React.Component {
             Student Major: {this.state.student && this.state.student.major}
           </StyledH3>
         </ul>
+        {this.props.projectsList.map(project => {
+          return <StyledH3>{project.project_name}</StyledH3>;
+        })}
+        {this.props.getMessage.map(message => {
+          console.log("message", message.date, message.message);
+          return (
+            <div>
+              <StyledH3>Message date:{message.date}</StyledH3>
+              <StyledH3>Sent Message:{message.message}</StyledH3>
+            </div>
+          );
+        })}
         <NavLink
           to={`/protected/Student/${this.props.match.params.id}/MessagingForm`}
           className="send-msg-button"
         >
           Send a Message
         </NavLink>
-        <NavLink to={`/protected/Student/${this.props.match.params.id}/AddProject`} className="send-msg-button">
+        <NavLink
+          to={`/protected/Student/${this.props.match.params.id}/AddProject`}
+          className="send-msg-button"
+        >
           Add a new Project
         </NavLink>
       </StyledDiv>

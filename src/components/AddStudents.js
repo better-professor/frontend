@@ -21,7 +21,7 @@ const StyledGoBack = styled.div`
   justify-content: space-between;
   align-items: center;
   /* height: 100vh; */
-   width: 100%;;
+  width: 100%;;
 `;
 
 const StyledForm = styled.form`
