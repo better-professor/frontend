@@ -153,7 +153,7 @@ const StudentList = props => {
             </StyledList>
           );
         })}
-        <NavLink className="send-button" to="/protected/AddStudent"> Add students</NavLink>
+        <NavLink className="send-button" to="/protected/AddStudents"> Add students</NavLink>
          
         
       </StyledStudentList>

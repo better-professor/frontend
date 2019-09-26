@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
+ 
 
 
 const StyledDiv = styled.div`
@@ -19,7 +20,7 @@ const StyledImg = styled.img`
 const NavLogo = () => {
   return (
     <StyledDiv>
-        <StyledImg src="https://p7.hiclipart.com/preview/605/287/666/square-academic-cap-graduation-ceremony-computer-icons-graduation-cap.jpg"></StyledImg>
+        <StyledImg src="https://imgur.com/gallery/uTn0qfZ"></StyledImg>
     </StyledDiv>
   );
 };
