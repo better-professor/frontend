@@ -30,7 +30,7 @@ const NavLogo = () => {
         <StyledImg src={Better_professor}></StyledImg>
         <div>
         <NavLink className="log-out" to="/LoginForm">Login</NavLink>
-        <NavLink className="log-out" to="RegisterForm">Register</NavLink>
+        <NavLink className="log-out" to="/RegisterForm">Register</NavLink>
         </div>
     </StyledDiv>
   );

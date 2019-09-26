@@ -88,8 +88,8 @@ function App() {
         <PrivateRoute  path="/protected" component={StudentList}/>
         <Route path="/protected/AddStudents" render={(props) => <AddStudents setStudentsList={setStudentsList} studentsList={studentsList} {...props}/> }/>
         <Route path="/protected/Student/:id" render={(props) => <Student studentsList={studentsList} {...props}/> }/>
-        <Route path="/protected/Student/MessagingForm" component={MessagingForm}/>
-        <Route path="/protected/Student/AddProject" component={AddProject}/>
+        <Route path="/protected/Student/:id/MessagingForm" component={MessagingForm}/>
+        <Route path="/protected/Student/:id/AddProject" component={AddProject}/>
         </StyledDiv>
       </div>
     </Router>

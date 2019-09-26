@@ -143,12 +143,12 @@ class Student extends React.Component {
           </StyledH3>
         </ul>
         <NavLink
-          to="/protected/Student/MessagingForm"
+          to={`/protected/Student/${this.props.match.params.id}/MessagingForm`}
           className="send-msg-button"
         >
           Send a Message
         </NavLink>
-        <NavLink to="/protected/Student/AddProject" className="send-msg-button">
+        <NavLink to={`/protected/Student/${this.props.match.params.id}/AddProject`} className="send-msg-button">
           Add a new Project
         </NavLink>
       </StyledDiv>
