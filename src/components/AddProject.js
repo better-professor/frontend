@@ -84,24 +84,17 @@ class AddProject extends React.Component {
           projects_date: "",
         }
       };
-    
-  // make a post request to retrieve a token from the api
-  // when you have handled the token, navigate to the StudentList route
 
-  addAStudent = e => {
+  AddAProject = e => {
     e.preventDefault();
     axiosWithAuth()
       .post(
-        "https://better-professor-backend.herokuapp.com/students/register",
+        "https://better-professor-backend.herokuapp.com/projects",
         this.state.credentials
       )
       .then(res => {
-        console.log("token from register", res.data);
-        alert("Student added successfully")
-        // is payload correct? or should it be token? -- is user.id correct? ot should it be id?
-        //localStorage.setItem('token', res.data.payload);
-        //localStorage.setItem('id', res.data.id);
-        //this.props.history.push('/protected');
+        console.log("hello from POST project", res.data);
+        alert("Project added successfully")
       })
       .catch(err => alert(err.message));
   };
@@ -124,7 +117,7 @@ class AddProject extends React.Component {
         </StyledGoBack>
         <StyledH1>Add a new project</StyledH1>
         <StyledImg src="https://cdn4.iconfinder.com/data/icons/project-management-1-11/65/32-512.png"></StyledImg>
-        <StyledForm onSubmit={this.addAStudent}>
+        <StyledForm onSubmit={this.AddAProject}>
           <StyledLabel>Student ID</StyledLabel>
           <StyledInput
             type="text"
@@ -165,7 +158,8 @@ class AddProject extends React.Component {
             type="text"
             name="projects_date"
             value={this.state.credentials.projects_date}
-            onChange={this.handleChange}/>
+            onChange={this.handleChange}
+          />
           <StyledButton>Add project</StyledButton>
         </StyledForm>
       </StyledDiv>

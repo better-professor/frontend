@@ -65,6 +65,7 @@ class Student extends React.Component {
 
   componentDidMount() {
     this.findStudent();
+    this.getProjects();
   }
   componentDidUpdate(prvProps) {
     if (
@@ -80,6 +81,21 @@ class Student extends React.Component {
     });
     this.setState({ student });
   };
+
+  getProjects = () => {
+    axiosWithAuth()
+        .get(
+          `https://better-professor-backend.herokuapp.com/projects/students/${this.state.student.id}`
+        )
+        .then(res => {
+          console.log("response from GET projects in Student.js", res);
+          //there is no projectList state here. Do i create it here? or pull it from a state hook in App.js?
+          this.setState(res.data)
+        })
+        .catch(error => {
+          alert(error.message);
+        });
+  }
 
   addStudentProject = e => {
     e.preventDefault();
