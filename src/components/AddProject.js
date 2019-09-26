@@ -7,7 +7,6 @@ const StyledDiv = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   height: 100vh;
   width: 33vw;
@@ -18,12 +17,10 @@ const StyledForm = styled.form`
   background-color: white;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   margin: 1em;
   color: #00abff;
   width: 60%;
-  /* height: 80vh; */
   border-radius: 1em;
   -moz-box-shadow: 3px 3px 5px 6px #115e9c;
   -webkit-box-shadow: 3px 3px 5px 6px #115e9c;
@@ -46,15 +43,6 @@ const StyledButton = styled.button`
   border-radius: 1em;
 `;
 
-const StyledLabel = styled.label`
-  margin: 1em;
-`;
-
-const StyledH2 = styled.h2`
-  color: white;
-  font-size: 1.3em;
-  margin: 0;
-`;
 const StyledH1 = styled.h1`
   color: #00abff;
   font-size: 1.8em;
@@ -67,10 +55,8 @@ const StyledImg = styled.img`
 const StyledGoBack = styled.div`
   background-color: white;
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
   align-items: center;
-  /* height: 100vh; */
   width: 100%;
 `;
 
@@ -89,7 +75,6 @@ class AddProject extends React.Component {
       ...this.state.projects,
       student_id: parseInt(this.props.match.params.id)
     };
-    console.log(newProject);
     e.preventDefault();
     axiosWithAuth()
       .post(
@@ -97,9 +82,7 @@ class AddProject extends React.Component {
         newProject
       )
       .then(res => {
-        console.log("hello from POST project", res.data);
         this.props.setProjectsList(projects => [...projects, res.data]);
-        alert("Project added successfully");
         this.handleReset();
       })
       .catch(err => {
@@ -114,7 +97,7 @@ class AddProject extends React.Component {
         project_name: "",
         deadline: "",
         deadline_type: "",
-        description: "",
+        description: ""
       }
     });
   };
@@ -126,7 +109,6 @@ class AddProject extends React.Component {
         [e.target.name]: e.target.value
       }
     });
-    console.log("values from add project form", this.state.projects);
   };
 
   render() {

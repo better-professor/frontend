@@ -5,15 +5,12 @@ import Better_professor from "../imgs/Better_professor.png";
  
 const StyledDiv = styled.div`
   background-color: #00abff;
- 
-   /* #00abff; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   width:98.7vw;
   height:10vh;
   margin:0;
-  /* border-bottom: 1px solid grey; */
 `;
 
 const StyledImg = styled.img`

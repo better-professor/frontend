@@ -2,27 +2,25 @@ import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
 
-const StyledDiv= styled.div`
+const StyledDiv = styled.div`
   background-color: #00abff;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   height: 100vh;
   width: 100vw;
 `;
 
-const StyledFormNImage= styled.div`
+const StyledFormNImage = styled.div`
   background-color: #00abff;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  align-items:center;
+  align-items: center;
   height: 100vh;
   width: 100vw;
 `;
 
-const StyledForm= styled.form`
+const StyledForm = styled.form`
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -31,16 +29,15 @@ const StyledForm= styled.form`
   margin: 2em;
   color: #00abff;
   width: 50vw;
-  /* border-radius: 1em; */
-  -moz-box-shadow:    3px 3px 5px 6px #115E9C;
-  -webkit-box-shadow: 3px 3px 5px 6px #115E9C;
-  box-shadow:         3px 3px 5px 6px #115E9C;
+  -moz-box-shadow: 3px 3px 5px 6px #115e9c;
+  -webkit-box-shadow: 3px 3px 5px 6px #115e9c;
+  box-shadow: 3px 3px 5px 6px #115e9c;
 `;
 
 const StyledInput = styled.input`
-    margin: 1em;
-    padding: 1em;
-    width: 80%;
+  margin: 1em;
+  padding: 1em;
+  width: 80%;
 `;
 
 const StyledButton = styled.button`
@@ -54,51 +51,54 @@ const StyledButton = styled.button`
 `;
 
 const StyledLabel = styled.label`
-  margin:1em;
+  margin: 1em;
 `;
 
 const StyledH2 = styled.h2`
   color: white;
   font-size: 1.3em;
-  margin:0;
+  margin: 0;
 `;
 const StyledH1 = styled.h1`
   color: white;
   font-size: 1.8em;
- 
 `;
 
 class LoginForm extends React.Component {
   state = {
     credentials: {
-      username: '',
-      password: ''
+      username: "",
+      password: ""
     }
   };
 
   login = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post("https://better-professor-backend.herokuapp.com/users/login", this.state.credentials)
+      .post(
+        "https://better-professor-backend.herokuapp.com/users/login",
+        this.state.credentials
+      )
       .then(res => {
-        console.log(" token from server", res.data.token)
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('id', res.data.id);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("id", res.data.id);
         this.handleReset();
-        this.props.history.push('/protected');
+        this.props.history.push("/protected");
       })
-      .catch(err =>{
+      .catch(err => {
         console.log(err.message);
         this.handleReset();
-      } );
+      });
   };
 
-  handleReset = (e) => {
-    this.setState({ credentials: {
-      username: '',
-      password: ''
-    } }) 
-}
+  handleReset = e => {
+    this.setState({
+      credentials: {
+        username: "",
+        password: ""
+      }
+    });
+  };
 
   handleChange = e => {
     this.setState({
@@ -134,7 +134,7 @@ class LoginForm extends React.Component {
           </StyledForm>
         </StyledFormNImage>
       </StyledDiv>
-    ); 
+    );
   }
-};
+}
 export default LoginForm;

@@ -4,17 +4,17 @@ import { NavLink } from "react-router-dom";
 
 const StyledNavBar = styled.div`
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
-  background-color:white;
+  background-color: white;
 `;
 const Logout = () => {
   return (
-      <StyledNavBar>
-        <NavLink className="log-out" to="/LoginForm">
-          Logout
-        </NavLink>
-      </StyledNavBar>
+    <StyledNavBar>
+      <NavLink className="log-out" to="/LoginForm">
+        Logout
+      </NavLink>
+    </StyledNavBar>
   );
 };
 export default Logout;

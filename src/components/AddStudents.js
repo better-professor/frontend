@@ -7,19 +7,15 @@ const StyledDiv = styled.div`
   background-color: #00abff;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
-  /* height: 100vh; */
   width: 33.33vw;
 `;
 
 const StyledGoBack = styled.div`
   background-color: #00abff;
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
   align-items: center;
-  /* height: 100vh; */
   width: 100%;
 `;
 
@@ -89,20 +85,20 @@ class AddStudents extends React.Component {
         this.state.credentials
       )
       .then(res => {
-        console.log("token from register", res.data);
-        alert("Student added successfully");
         const newStudent = {
           student: res.data.student_name,
           major: res.data.major,
           id: res.data.id,
           user_id: res.data.user_id
         };
-        this.props.setStudentsList(studentsList => [...studentsList,newStudent]);
-        console.log(this.props.studentsList);
+        this.props.setStudentsList(studentsList => [
+          ...studentsList,
+          newStudent
+        ]);
         this.handleReset();
       })
       .catch(err => {
-        alert(err.message);
+        console.log(err.message);
         this.handleReset();
       });
   };
@@ -114,8 +110,6 @@ class AddStudents extends React.Component {
         [e.target.name]: e.target.value
       }
     });
-    console.log("values from form", this.state.credentials);
-    console.log("props from parent", this.props);
   };
 
   handleReset = e => {

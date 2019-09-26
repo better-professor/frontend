@@ -4,27 +4,12 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { parse } from "url";
 
-const initialStudent = {
-  student_id: 1,
-  student_name: "James Jimmerson",
-  major: "Geology",
-  deadlines: { type: "Project", date: "24/09/2019" }
-};
-
-const postStudentProject = {
-  user_id: "",
-  student_name: " ",
-  major: " ",
-  deadlines: [{ type: " " }, { date: " " }]
-};
-
 const StyledDiv = styled.div`
   background-color: #00abff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
   width: 33.33vw;
 `;
 
@@ -49,10 +34,8 @@ const StyledImg = styled.img`
 const StyledGoBack = styled.div`
   background-color: #00abff;
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
   align-items: center;
-  /* height: 100vh; */
   width: 100%;
 `;
 
@@ -91,7 +74,6 @@ class Student extends React.Component {
         `https://better-professor-backend.herokuapp.com/projects/students/${this.props.match.params.id}`
       )
       .then(res => {
-        console.log("response from GET projects in Student.js", res);
         this.props.setProjectsList(res.data);
       })
       .catch(error => {
@@ -106,7 +88,6 @@ class Student extends React.Component {
         `https://better-professor-backend.herokuapp.com/messages/students/${this.props.match.params.id}`
       )
       .then(res => {
-        console.log("response from GET projects in Student.js", res);
         this.props.setGetMessage(res.data);
       })
       .catch(error => {
@@ -115,21 +96,7 @@ class Student extends React.Component {
       });
   };
 
-  addStudentProject = e => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post(
-        "https://better-professor-backend.herokuapp.com/users",
-        this.postStudentProject
-      )
-      .then(res => {
-        console.log("response from server", res);
-      })
-      .catch(err => alert(err.message));
-  };
-
   render() {
-    console.log("messages from student", this.props.getMessage);
     return (
       <StyledDiv>
         <StyledGoBack>
@@ -163,7 +130,6 @@ class Student extends React.Component {
         <>
           <StyledH3>Sent Messages </StyledH3>
           {this.props.getMessage.map(message => {
-            console.log("message", message.date, message.message);
             return (
               <div>
                 <StyledH4>Message date:{message.date}</StyledH4>
