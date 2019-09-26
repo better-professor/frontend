@@ -90,31 +90,32 @@ const StyledImg = styled.img`
 `;
 
 const StudentList = props => {
-    console.log(props)
-  const [studentsList, setStudentsList] = useState([]);
-  const loginId = localStorage.getItem("id");
-  // Get request(useEffect) needs to happen here, where we recieve student info
+  console.log(props);
+  const {studentsList, setStudentsList} = props;
+//   const [studentsList, setStudentsList] = useState([]);
+//   const loginId = localStorage.getItem("id");
+//   // Get request(useEffect) needs to happen here, where we recieve student info
 
-  useEffect(() => {
-    const getStudents = () => {
-      axiosWithAuth()
-        .get(
-          `https://better-professor-backend.herokuapp.com/students/user/${loginId}`
-        )
-        .then(res => {
-          console.log(" response from server", res);
-          setStudentsList(res.data);
-        })
-        .catch(error => {
-          alert(error.message);
-        });
-    };
-    getStudents();
-  }, []);
-  // this post request needs work
+//   useEffect(() => {
+//     const getStudents = () => {
+//       axiosWithAuth()
+//         .get(
+//           `https://better-professor-backend.herokuapp.com/students/user/${loginId}`
+//         )
+//         .then(res => {
+//           console.log(" response from server", res);
+//           setStudentsList(res.data);
+//         })
+//         .catch(error => {
+//           alert(error.message);
+//         });
+//     };
+//     getStudents();
+//   }, []);
+//   // this post request needs work
   const addStudents = () => {
     axiosWithAuth()
-      .post(
+      .get(
         "https://better-professor-backend.herokuapp.com/students",
         setStudentsList
       )
@@ -134,28 +135,28 @@ const StudentList = props => {
       <StyledStudentList>
         <StyledH2>Hello Professor John Doe</StyledH2>
         <StyledImg src="https://icon-library.net/images/teacher-icon-png/teacher-icon-png-16.jpg"></StyledImg>
-        <StyledH2> Your user id is:{loginId}</StyledH2>
+        <StyledH2> Your user id is: #</StyledH2>
         <StyledH2>Your list of students</StyledH2>
         {studentsList.map(student => {
           return (
             <StyledList key={student.id}>
-              <NavLink to={`/protected/Student/${student.id}`}
+              <NavLink
+                to={`/protected/Student/${student.id}`}
                 className="studentsNav"
                 activeStyle={{
                   fontWeight: "bold",
                   color: "blue",
                   margin: "1em"
                 }}
-               
               >
                 {student.id}.{student.student}
               </NavLink>
             </StyledList>
           );
         })}
-        <NavLink className="send-button" to="/protected/AddStudents"> Add students</NavLink>
-         
-        
+        <NavLink className="send-button" to="/protected/AddStudents">
+          Add students
+        </NavLink>
       </StyledStudentList>
     </StyledDiv>
   );

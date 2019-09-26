@@ -50,20 +50,20 @@ function App() {
     getStudents();
   }, []);
   // this post request needs work
-  const addStudents = () => {
-    axiosWithAuth()
-      .post(
-        "https://better-professor-backend.herokuapp.com/students",
-        setStudentsList
-      )
-      .then(res => {
-        setStudentsList(res.data);
-        console.log(res.data);
-      })
-      .catch(error => {
-        alert(error.message);
-      });
-  };
+  // const addStudents = () => {
+  //   axiosWithAuth()
+  //     .post(
+  //       "https://better-professor-backend.herokuapp.com/students",
+  //       setStudentsList
+  //     )
+  //     .then(res => {
+  //       setStudentsList(res.data);
+  //     })
+  //     .catch(error => {
+    //       alert(error.message);
+    //     });
+    // };
+          console.log("student list from app", studentsList);
   return (
      <Router>
       <div className="App">
@@ -71,8 +71,9 @@ function App() {
         <Route path="/RegisterForm" component={RegisterForm}/>
         <Route exact path="/LoginForm" component={LoginForm} />
         <StyledDiv>
-        <PrivateRoute  path="/protected" component={StudentList}/>
-        <Route path="/protected/AddStudents" component={AddStudents}/>
+        {/* <PrivateRoute  path="/protected" component={StudentList}/> */}
+        <Route path="/protected" render={(props) => <StudentList setStudentsList={setStudentsList} studentsList={studentsList} {...props}/> }/>
+        <Route path="/protected/AddStudents" render={(props) => <AddStudents setStudentsList={setStudentsList} studentsList={studentsList} {...props}/> }/>
         <Route path="/protected/Student/:id" render={(props) => <Student studentsList={studentsList} {...props}/> }/>
         <Route path="/protected/Student/MessagingForm" component={MessagingForm}/>
         <Route path="/protected/Student/AddProject" component={AddProject}/>

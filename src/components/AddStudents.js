@@ -78,7 +78,7 @@ class AddStudents extends React.Component {
     credentials: {
       student_name: "",
       major: "",
-      user_id:null,
+      user_id:"",
     }
   };
 
@@ -96,6 +96,8 @@ class AddStudents extends React.Component {
       .then(res => {
         console.log("token from register", res.data);
         alert("Student added successfully")
+        this.props.setStudentsList(this.state.credentials);
+        console.log(this.props.studentsList)
         // is payload correct? or should it be token? -- is user.id correct? ot should it be id?
         //localStorage.setItem('token', res.data.payload);
         //localStorage.setItem('id', res.data.id);
@@ -112,6 +114,7 @@ class AddStudents extends React.Component {
         }
       });
       console.log("values from form",this.state.credentials);
+      console.log("props from parent",this.props);
     };
     
     render() {

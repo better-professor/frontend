@@ -20,7 +20,7 @@ const StyledImg = styled.img`
 const NavLogo = () => {
   return (
     <StyledDiv>
-        <StyledImg src="https://imgur.com/gallery/uTn0qfZ"></StyledImg>
+        <StyledImg src=""></StyledImg>
     </StyledDiv>
   );
 };
