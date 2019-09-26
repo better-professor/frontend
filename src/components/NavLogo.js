@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
+import Better_professor from "../imgs/Better_professor.png";
  
 
 
 const StyledDiv = styled.div`
-  background-color: rgba(255,255,255,.5);
+  background-color: #00abff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +21,7 @@ const StyledImg = styled.img`
 const NavLogo = () => {
   return (
     <StyledDiv>
-        <StyledImg src=""></StyledImg>
+        <StyledImg src={Better_professor}></StyledImg>
     </StyledDiv>
   );
 };
