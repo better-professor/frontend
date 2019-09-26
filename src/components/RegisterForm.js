@@ -104,10 +104,12 @@ class RegisterForm extends React.Component {
     axiosWithAuth()
       .post("https://better-professor-backend.herokuapp.com/users/register", this.state.credentials)
       .then(res => {
-        console.log("token from register", res.data.id)
+        console.log("token from register", res.data)
         // is payload correct? or should it be token? -- is user.id correct? ot should it be id?
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('id', res.data.id);
+        localStorage.setItem('first_name', res.data.first_name);
+        localStorage.setItem('last_name', res.data.last_name);
         this.props.history.push('/LoginForm');
       })
       .catch(err => console.log(err.response));

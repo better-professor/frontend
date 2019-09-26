@@ -84,8 +84,7 @@ function App() {
         <Route path="/RegisterForm" component={RegisterForm}/>
         <Route exact path="/LoginForm" component={LoginForm} />
         <StyledDiv>
-        {/* <PrivateRoute  path="/protected" component={StudentList}/> */}
-        <Route path="/protected" render={(props) => <StudentList setStudentsList={setStudentsList} studentsList={studentsList} {...props}/> }/>
+        <PrivateRoute  path="/protected" component={StudentList}/>
         <Route path="/protected/AddStudents" render={(props) => <AddStudents setStudentsList={setStudentsList} studentsList={studentsList} {...props}/> }/>
         <Route path="/protected/Student/:id" render={(props) => <Student studentsList={studentsList} {...props}/> }/>
         <Route path="/protected/Student/MessagingForm" component={MessagingForm}/>

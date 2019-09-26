@@ -91,51 +91,52 @@ const StyledImg = styled.img`
 
 const StudentList = props => {
   console.log(props);
-  const {studentsList, setStudentsList} = props;
-//   const [studentsList, setStudentsList] = useState([]);
-//   const loginId = localStorage.getItem("id");
-//   // Get request(useEffect) needs to happen here, where we recieve student info
+  const [studentsList, setStudentsList] = useState([]);
+  const loginId = localStorage.getItem("id");
+  const user_firstName = localStorage.getItem("first_name");
+  const user_lastName = localStorage.getItem("last_name");
+  // Get request(useEffect) needs to happen here, where we recieve student info
 
-//   useEffect(() => {
-//     const getStudents = () => {
-//       axiosWithAuth()
-//         .get(
-//           `https://better-professor-backend.herokuapp.com/students/user/${loginId}`
-//         )
-//         .then(res => {
-//           console.log(" response from server", res);
-//           setStudentsList(res.data);
-//         })
-//         .catch(error => {
-//           alert(error.message);
-//         });
-//     };
-//     getStudents();
-//   }, []);
+  useEffect(() => {
+    const getStudents = () => {
+      axiosWithAuth()
+        .get(
+          `https://better-professor-backend.herokuapp.com/students/user/${loginId}`
+        )
+        .then(res => {
+          console.log(" response from server", res);
+          setStudentsList(res.data);
+        })
+        .catch(error => {
+          alert(error.message);
+        });
+    };
+    getStudents();
+  }, []);
 //   // this post request needs work
-  const addStudents = () => {
-    axiosWithAuth()
-      .get(
-        "https://better-professor-backend.herokuapp.com/students",
-        setStudentsList
-      )
-      .then(res => {
-        setStudentsList(res.data);
-        console.log(res.data);
-      })
-      .catch(error => {
-        alert(error.message);
-      });
-  };
+//   const addStudents = () => {
+//     axiosWithAuth()
+//       .get(
+//         "https://better-professor-backend.herokuapp.com/students",
+//         setStudentsList
+//       )
+//       .then(res => {
+//         setStudentsList(res.data);
+//         console.log(res.data);
+//       })
+//       .catch(error => {
+//         alert(error.message);
+//       });
+//   };
 
   return (
     //we need userid in line 85. Not sure how to get that there yet.
     <StyledDiv>
       <Route to="/protected/Logout" component={Logout} />
       <StyledStudentList>
-        <StyledH2>Hello Professor John Doe</StyledH2>
+        <StyledH2>Hello, Professor {user_firstName} {user_lastName}</StyledH2>
         <StyledImg src="https://icon-library.net/images/teacher-icon-png/teacher-icon-png-16.jpg"></StyledImg>
-        <StyledH2> Your user id is: #</StyledH2>
+        <StyledH2> Your user id is: {loginId}</StyledH2>
         <StyledH2>Your list of students</StyledH2>
         {studentsList.map(student => {
           return (
