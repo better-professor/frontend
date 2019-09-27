@@ -9,7 +9,7 @@ const StyledDiv = styled.div`
   flex-direction: column;
   align-items: center;
   width: 33.33vw;
-  margin: 1em;
+  height:850px;
   margin-top: 0;
   border-left: 1px solid grey;
 `;

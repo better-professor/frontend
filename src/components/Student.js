@@ -99,58 +99,64 @@ class Student extends React.Component {
   render() {
     return (
       <StyledDiv>
-        <StyledGoBack>
-          <NavLink className="go-back" to="/protected">{`<`}</NavLink>
-        </StyledGoBack>
-        <ul>
-          <StyledH2>
-            You are currently viewing records
-            <br />
-            for student id number:{this.state.student && this.state.student.id}
-          </StyledH2>
-          <StyledImg src="https://img.pngio.com/registration-for-under-graduate-student-icon-png-free-student-icon-png-820_731.png"></StyledImg>
-          <StyledH3>
-            Student Name: {this.state.student && this.state.student.student}
-          </StyledH3>
-          <StyledH3>
-            Student Major: {this.state.student && this.state.student.major}
-          </StyledH3>
-        </ul>
-        <>
-          <StyledH3>Student Projects </StyledH3>
-          {this.props.projectsList.map(project => {
-            return (
-              <>
-                <StyledH4>Due Date: {project.deadline}</StyledH4>
-                <StyledH4>Deadline Type: {project.deadline_type}</StyledH4>
-              </>
-            );
-          })}
-        </>
-        <>
-          <StyledH3>Sent Messages </StyledH3>
-          {this.props.getMessage.map(message => {
-            return (
-              <div>
-                <StyledH4>Message date:{message.date}</StyledH4>
-                <StyledH4>Sent Message:{message.message}</StyledH4>
-              </div>
-            );
-          })}
-        </>
-
-        <NavLink
-          to={`/protected/Student/${this.props.match.params.id}/MessagingForm`}
-          className="send-msg-button"
-        >
-          Send a Message
-        </NavLink>
-        <NavLink
-          to={`/protected/Student/${this.props.match.params.id}/AddProject`}
-          className="send-msg-button"
-        >
-          Add a new Project
-        </NavLink>
+        <div class="scrollbar" id="style-default">
+          <div class="force-overflow">
+            <StyledGoBack>
+              <NavLink className="go-back" to="/protected">{`<`}</NavLink>
+            </StyledGoBack>
+            <ul>
+              <StyledH2>
+                You are currently viewing records
+                <br />
+                for student id number:
+                {this.state.student && this.state.student.id}
+              </StyledH2>
+              <StyledImg src="https://img.pngio.com/registration-for-under-graduate-student-icon-png-free-student-icon-png-820_731.png"></StyledImg>
+              <StyledH3>
+                Student Name: {this.state.student && this.state.student.student}
+              </StyledH3>
+              <StyledH3>
+                Student Major: {this.state.student && this.state.student.major}
+              </StyledH3>
+            </ul>
+            <>
+              <StyledH3>Student Projects </StyledH3>
+              {this.props.projectsList.map(project => {
+                return (
+                  <>
+                    <StyledH4>Due Date: {project.deadline}</StyledH4>
+                    <StyledH4>Deadline Type: {project.deadline_type}</StyledH4>
+                  </>
+                );
+              })}
+            </>
+            <>
+              <StyledH3>Sent Messages </StyledH3>
+              {this.props.getMessage.map(message => {
+                return (
+                  <div>
+                    <StyledH4>Message date:{message.date}</StyledH4>
+                    <StyledH4>Sent Message:{message.message}</StyledH4>
+                  </div>
+                );
+              })}
+            </>
+            <div class="student-buttons">
+              <NavLink
+                to={`/protected/Student/${this.props.match.params.id}/MessagingForm`}
+                className="send-msg-button"
+              >
+                Send a Message
+              </NavLink>
+              <NavLink
+                to={`/protected/Student/${this.props.match.params.id}/AddProject`}
+                className="send-msg-button"
+              >
+                Add a new Project
+              </NavLink>
+            </div>
+          </div>
+        </div>
       </StyledDiv>
     );
   }

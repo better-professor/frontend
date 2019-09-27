@@ -43,9 +43,9 @@
 .send-msg-button {
   background-color: white;
   color: #00abff;
-  margin: 1em;
-  padding: 1em;
-  width: 50%;
+  margin: 0.5em;
+  padding: 0.5em;
+  width: 30%;
   border: none;
   border-radius: 1em;
   text-decoration: none;
@@ -56,7 +56,7 @@
   color: white;
   margin: 0.7em;
   padding: 0.7em;
-  width: 50%;
+  width: 20%;
   border: none;
   /* border-radius: 1em; */
   text-decoration: none;
@@ -80,6 +80,25 @@
   padding: 0.7em;
   width: 5%;
   border: none;
-  /* border-radius: 1em; */
   text-decoration: none;
 }
+
+.scrollbar
+{
+	margin-left: 22px;
+	float: left;
+	height: 800px;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+.force-overflow
+{
+	min-height: 1500px;
+}
+.student-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
