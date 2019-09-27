@@ -8,9 +8,10 @@ const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 850px;
   width: 33vw;
   border-left: 1px solid grey;
+ 
 `;
 
 const StyledForm = styled.form`

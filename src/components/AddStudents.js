@@ -9,6 +9,7 @@ const StyledDiv = styled.div`
   flex-direction: column;
   align-items: center;
   width: 33.33vw;
+  
 `;
 
 const StyledGoBack = styled.div`
