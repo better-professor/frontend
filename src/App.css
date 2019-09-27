@@ -89,7 +89,8 @@
 	float: left;
 	height: 800px;
 	overflow-y: scroll;
-	margin-bottom: 25px;
+  margin-bottom: 25px;
+  
 }
 
 .force-overflow
@@ -102,3 +103,7 @@
   align-items: center;
 }
 
+.share {
+
+  margin: 0.8em;
+}
