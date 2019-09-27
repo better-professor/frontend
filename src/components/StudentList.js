@@ -77,7 +77,7 @@ const StudentList = props => {
     <StyledDiv id="wrapper">
       <div class="scrollbar" id="style-default">
         <div class="force-overflow">
-          <div className="share">
+          <div className="share"> 
             <Twitter link="https://betterprofessor-marketing.netlify.com/"></Twitter>
             <Linkedin link="https://betterprofessor-marketing.netlify.com/"></Linkedin>
             <Facebook link="https://betterprofessor-marketing.netlify.com/"></Facebook>
