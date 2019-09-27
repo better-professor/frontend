@@ -43,9 +43,9 @@
 .send-msg-button {
   background-color: white;
   color: #00abff;
-  margin: 0.5em;
-  padding: 0.5em;
-  width: 30%;
+  margin: 1em;
+  padding: 1em;
+  width: 50%;
   border: none;
   border-radius: 1em;
   text-decoration: none;

@@ -1,8 +1,10 @@
 import React from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import styled from "styled-components";
 import { parse } from "url";
+import ProjectModal from "./ProjectPopup";
+import MessagesModal from "./MessagesPopup";
 
 const StyledDiv = styled.div`
   background-color: #00abff;
@@ -120,26 +122,24 @@ class Student extends React.Component {
               </StyledH3>
             </ul>
             <>
-              <StyledH3>Student Projects </StyledH3>
-              {this.props.projectsList.map(project => {
-                return (
-                  <>
-                    <StyledH4>Due Date: {project.deadline}</StyledH4>
-                    <StyledH4>Deadline Type: {project.deadline_type}</StyledH4>
-                  </>
-                );
-              })}
+              <Route
+                render={props => (
+                  <ProjectModal
+                    projectsList={this.props.projectsList}
+                    {...props}
+                  />
+                )}
+              />
             </>
             <>
-              <StyledH3>Sent Messages </StyledH3>
-              {this.props.getMessage.map(message => {
-                return (
-                  <div>
-                    <StyledH4>Message date:{message.date}</StyledH4>
-                    <StyledH4>Sent Message:{message.message}</StyledH4>
-                  </div>
-                );
-              })}
+              <Route
+                render={props => (
+                  <MessagesModal
+                    getMessage={this.props.getMessage}
+                    {...props}
+                  />
+                )}
+              />
             </>
             <div class="student-buttons">
               <NavLink
